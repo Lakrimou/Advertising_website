@@ -1,0 +1,163 @@
+{% extends '::front.html.twig' %}
+{% block title %}
+ - بروفيل {{ app.user.username }}
+{% endblock %}
+{% block body %}
+    <section class="inner-page-content border-bottom top-pad-50" style=" background-color:#e7e7e7; padding-top:130px">
+        <div class="login-register">
+            <div class="container" >
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <table class="table"style="background-color: white;">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>{{ 'معلومات عن المستخدم'|trans }}</th>
+                                <th>{{ 'خصائص المستخدم'|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>{{ 'إسم المستخدم'|trans }}</th>
+                                <td>{{ app.user.username }}</td>
+
+                            </tr>
+                            <tr>
+                                <th>{{ 'البريد الإلكتروني'|trans }}</th>
+                                <td>{{ app.user.email }}</td>
+
+                            </tr>
+                            {% if app.user.phoneNumber is not null %}
+                                <th>{{ 'رقم الجوال'|trans }}</th>
+                                <td>{{ app.user.phoneNumber }}</td>
+                            {% endif %}
+                            <tr>
+                                <th>{{ 'صورة المستخدم'|trans }}</th>
+                                <td><div class="card-image">
+                                        <a href="#" data-toggle="modal" data-target="#myModal">
+    {% if app.user.image is not null %}
+                                            <img class="thumbnail" src="{{ asset('backend/img/user/'~app.user.image) }}" alt="..." width="200" height="auto">
+        {% else %}
+            <img class="thumbnail" src="{{ asset('frontend/ivy/img/default-user.png') }}" alt="..." width="200" height="auto">
+        {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="modal fade" id="myModal" role="dialog" style="z-index: 99999999999;">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">{{ 'صورة المستخدم'|trans }}</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="card-image">
+                                                        {% if app.user.image is not empty %}
+                                                            <img class="thumbnail" src="{{ asset('backend/img/user/'~app.user.image) }}" alt="..." width="500" height="auto">
+                                                        {% else %}
+                                                            <img class="thumbnail" src="{{ asset('frontend/ivy/img/default-user.png') }}" alt="{{ app.user.username }}" width="500" height="auto">
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary btn-lg" >{{ 'رجوع'|trans }}</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <th>{{ 'البلد'|trans }}</th>
+                                <td>{{ app.user.tCountry }}</td>
+
+                            </tr>
+                            <tr>
+                                <th>{{ 'المدينة'|trans }}</th>
+                                <td>{{ app.user.tRegion }}</td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4">
+                        <div class="card card-user" style="background-color: #ffffff; padding: 5px;">
+                            <td><div class="card-image text-center">
+                                    <a href="#" data-toggle="modal" data-target="#myModale">
+                                        {% if app.user.image is not empty %}
+                                            <img style="border: 5px solid gray; border-radius: 8px;" src="{{ asset('backend/img/user/'~app.user.image) }}" alt="{{ app.user.username }}" width="200" height="auto">
+                                        {% else %}
+                                            <img style="border: 5px solid gray; border-radius: 8px;" src="{{ asset('frontend/ivy/img/default-user.png') }}" alt="{{ app.user.username }}" width="200" height="auto">
+                                        {% endif %}
+
+                                    </a>
+                                </div>
+                                <div class="modal fade" id="myModale" role="dialog" style="z-index: 99999999999;">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">{{ 'صورة المستخدم'|trans }}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card-image text-center">
+                                                    {% if app.user.image is not empty %}
+                                                        <img style="border: 5px solid gray; border-radius: 8px;" src="{{ asset('backend/img/user/'~app.user.image) }}" alt="{{ app.user.username }}" width="500" height="auto">
+                                                    {% else %}
+                                                        <img src="{{ asset('frontend/ivy/img/default-user.png') }}" alt="{{ app.user.username }}" width="500" height="auto">
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary btn-lg" >{{ 'رجوع'|trans }}</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <div class="card-body text-center">
+                                <div class="author">
+                                    <a href="#">
+
+                                        <h5 class="title">{{ app.user.username }}</h5>
+                                    </a>
+                                    <p class="description">
+                                    </p>
+                                </div>
+                                <p class="description text-center">
+                                    <br> {{ 'الإيميل'|trans }} : {{ app.user.email }}
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="button-container mr-auto ml-auto text-center">
+                                {% if app.user.facebook is not null %}
+                                <a href="{{ app.user.facebook }}" target="_blank" class="btn btn-simple btn-link btn-icon">
+                                    <i class="fa fa-facebook-square"></i>
+                                </a>
+                                    {% endif %}
+    {% if app.user.twitter is not null %}
+                                <a href="{{ app.user.twitter }}" target="_blank" class="btn btn-simple btn-link btn-icon">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+        {% endif %}
+                                {% if app.user.googlePlus is not null %}
+                                <a href="{{ app.user.googlePlus }}" target="_blank" class="btn btn-simple btn-link btn-icon">
+                                    <i class="fa fa-google-plus-square"></i>
+                                </a>
+                                    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!--row-->
+                    <!--Reset Password-->
+                </div><!--col-lg-10-->
+            </div><!--row-->
+        </div><!--container-->
+        </div><!--Login-register-->
+    </section>
+{% endblock %}

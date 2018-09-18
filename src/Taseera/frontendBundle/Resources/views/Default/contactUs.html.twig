@@ -1,0 +1,174 @@
+{% extends '::front.html.twig' %}
+{% block title %}
+ - اتصل بنا
+{% endblock %}
+{% block meta %}
+<meta name="description" content="يمكنكم الإتصال بموقع تسعيرة أينما كنتم نحن على ذمتكم على مدار الساعة وكامل أيام الأسبوع">
+{% endblock %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ asset('frontend/ivy/css/contact-us.css') }}">
+{% endblock %}
+{% block body %}
+<div id="mape">
+
+</div>
+
+
+<!--PageContent-->
+<section class="contact-us border-bottom section-pad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+            </div>
+        </div><!--row-->
+    </div><!--container-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h4 class="text-uppercase">{{ 'اتصل بنا'|trans }}</h4>
+                {% for flashMessage in app.session.flashbag.get('msg') %}
+                            <br><br>
+                            <div class='alert alert-success alert-dismissable arabe'>
+                                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;
+                                </button>
+                                {{ flashMessage }}
+                            </div>
+
+                        {% endfor %}
+                <form name="contactForm" action="{{ url('taseerafrontend_contctus') }}" id="contact-form"
+                      method="post" data-toggle="validator">
+                    <div class="form-group">
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label class="text-capitalize" for="name">{{ 'الاسم الكامل'|trans }} :<span
+                                            class="text-danger">*</span> </label>
+                                <div class="inner-addon left-addon">
+                                    <i class="left-addon form-icon fa fa-font"></i>
+                                    <input id="name" type="text" name="contactName" class="form-control form-control-md"
+                                           placeholder={{ 'أدخل اسمك بالكامل'|trans }} data-error="الاسم مطلوب " مطلوب>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div><!--Name Div-->
+                            <div class="form-group col-sm-6">
+                                <label class="text-capitalize" for="email">{{ 'البريد الإلكتروني'|trans }} : <span
+                                            class="text-danger">*</span></label>
+                                <div class="inner-addon left-addon">
+                                    <i class="left-addon form-icon fa fa-envelope"></i>
+                                    <input id="email" type="text" name="email" class="form-control form-control-md"
+                                           placeholder={{ 'أدخل بريدك الإلكتروني'|trans }} data-error="Email required">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div><!--Email-->
+                            <div class="form-group col-sm-6">
+                                <label class="text-capitalize" for="phone">
+
+
+                                    {{ 'هاتف'|trans }} : <span class="text-danger">*</span> </label>
+                                <div class="inner-addon left-addon">
+                                    <i class="left-addon form-icon fa fa-phone"></i>
+                                    <input id="phone" type="text" name="phone" class="form-control form-control-md"
+                                           placeholder={{ 'أدخل رقم هاتفك'|trans }}>
+                                </div>
+                            </div><!--Phone Div-->
+                            <div class="form-group col-sm-6">
+                                <label class="text-capitalize" for="subject">{{ 'الموضوع'|trans }}:
+                                    <span class="text-danger">*</span></label>
+                                <div class="inner-addon left-addon">
+                                    <i class="left-addon form-icon fa fa-book"></i>
+                                    <input id="subject" name="subject" type="text" class="form-control form-control-md"
+                                           placeholder={{ 'أدخل الموضوع'|trans }} data-error="لموضوع مطلوب ">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div><!--Subject Div-->
+                            <div class="form-group col-sm-12">
+                                <label class="text-capitalize" for="text">{{ 'رسالة'|trans }}: <span
+                                            class="text-danger">*</span></label>
+                                <div class="inner-addon">
+                                    <textarea data-error={{ "يرجى كتابة رسالة"|trans }} name="comments" id="text"
+                                              placeholder={{ "اكتب رسالتك هنا"|trans }} required></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div><!--Message Div-->
+
+                            <!--Question Div-->
+                        </div><!--form-inline row-->
+                    </div><!--form-group-->
+                    <div class="form-group">
+                        <input type="hidden" name="submit" value="contact_form" id="submit"/>
+                        <input class="btn btn-primary sharp btn-md btn-style-one" type="submit" value={{ 'إرسال رسالة'|trans }}
+                                name="submitted">
+
+                    </div>
+                </form>
+            </div><!--col-lg-8-->
+            <div class="col-lg-4">
+                <h4 class="text-uppercase">{{ 'معلومات الاتصال'|trans }}</h4>
+                <ul class="contact-us-info list-unstyled fa-ul">
+                    <li><i class="fa-li fa fa-map-marker"></i>مكتب 5, بناية 2, شارع الرويضات ، معيذر الريان، قطر
+                    </li>
+                    <li><i class="fa-li fa fa-enveloppe"></i>
+                       {{ 'الإيميل'|trans }}: info@tasseera.com
+                    </li>
+
+                    <li><i class="fa-li fa fa-phone"></i>
+                       {{ 'الهاتف'|trans }}: 0097444121398
+                    </li>
+                </ul>
+            </div><!--col-lg-4-->
+        </div><!--row-->
+    </div><!--container-->
+</section>
+<!--PageContent-->
+<!-- Company Section Start-->
+<section class="partners-v3 section-gray-bg">
+    <div class="container section-carousel">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="owl-carousel partner-carousel-v3 partner-carousel-v4" data-car-length="6" data-items="6"
+                     data-loop="true" data-nav="false" data-autoplay="true" data-autoplay-timeout="2000"
+                     data-dots="false" data-auto-width="false" data-auto-height="true" data-right="false"
+                     data-responsive-small="2" data-autoplay-hover="true" data-responsive-medium="4"
+                     data-responsive-xlarge="6" data-margin="30">
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/01.png" alt="partner"></a>
+                    </div>
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/02.png" alt="partner"></a>
+                    </div>
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/03.png" alt="partner"></a>
+                    </div>
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/04.png" alt="partner"></a>
+                    </div>
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/05.png" alt="partner"></a>
+                    </div>
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/06.png" alt="partner"></a>
+                    </div>
+                </div>
+            </div><!--col-lg-12-->
+        </div><!--row-->
+    </div><!--container-->
+{% endblock %}
+    {% block javascripts %}
+        <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('mape'), {
+                center: {lat: 25.28425347, lng:51.3719084},
+                zoom: 8
+
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATKPBSrILzEoU88dp8eQ-EI1XsbONGgw4&callback=initMap"
+            async defer></script>
+    {% endblock %}

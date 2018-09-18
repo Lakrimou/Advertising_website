@@ -1,0 +1,241 @@
+{% extends "::layout_company.html.twig" %}
+{% block title %}
+ملف الشركة
+{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('company/assets/css/introjs.css') }}">
+    <link rel="stylesheet" href="{{ asset('company/assets/css/introjs-rtl.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="content">
+    <div class="card ">
+    <div class="card-header ">
+        <h4 class="card-title" style="text-align: center">ملف الشركة</h4>
+
+
+    </div>
+        <div class="card-body ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                    {#<table class="table table-responsive table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Country</th>
+                                <th>Region</th>
+                                <th>Number of ads</th>
+                            </tr>
+                            <tr>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.tCountry }}</td>
+                                <td>{{ user.tRegion }}</td>
+                                <td>{{ itemsNumber }}</td>
+                            </tr>
+                        </tbody>
+                    </table>#}
+                    {% if user.image is defined %}
+                        <div class="text-left" id="show-{{ user.id }}" data-toggle="modal"
+                                   data-target="#show-modal-{{ user.id }}">
+<img src="{{ asset('backend/img/company/')~user.image }}" alt="picture of company" width="200" height="auto" class="doctorPic">
+</div>
+
+
+<div class="modal fade" id="show-modal-{{ user.id }}" tabindex="-1"
+             role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                                data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title arabe" id="myModalLabel"> اظهار
+                            الصورة</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <center>
+                            <img id="doctorPic" src="{{ asset('backend/img/company/')~user.image }}" alt="picture of company" width="400" height="auto">
+                        </center>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            {#<button type="button" id="mybutton" class="updatePhotoDoctor btn btn-default arabe">تعديل</button>#}
+                            {{ form_start(editPictureForm, {"attr":{"id":"akrem"}}) }}
+                            <div class="form-group">
+                                {#Génération du label. #}
+                                {{ form_label(editPictureForm.image, "صورة ", {'label_attr': {'class': 'arabe control-label'}}) }}
+
+                                {#Affichage des erreurs pour ce champ précis.#}
+                                {{ form_errors(editPictureForm.image) }}
+                                {#Génération de l'input.#}
+                                {{ form_widget(editPictureForm.image, {'attr': {'class': 'arabe'}}) }}
+                            </div>
+                            {#<div class="form-group">
+                                 Génération du label.
+                                {{ form_label(editPicForm.password, "كلمة المرور", {'label_attr': {'class': 'arabe control-label'}}) }}
+
+                                 Affichage des erreurs pour ce champ précis.
+                                {{ form_errors(editPicForm.passwordDoctor) }}
+                                 Génération de l'input.
+                                {{ form_widget(editPicForm.passwordDoctor, {'attr': {'class': 'arabe'}}) }}
+                            </div>#}
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                     role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                     aria-valuemax="100" style="width: 100%"></div>
+                            </div>
+                            <input type="submit" value="تعديل"/>
+                            {{ form_end(editPictureForm) }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+                    {% endif %}
+                    <p>
+                    {% if user.accepted == 1 %}
+                    <div class="alert alert-success">
+                    تمت الموافقة على طلب تسجيل شركتكم
+</div>
+{% elseif user.accepted == 0 %}
+<div class="alert alert-warning">
+سيتم النظر في طلب تسجيل شركتكم خلال الساعة القادمة
+</div>
+{% else %}
+<div class="alert alert-warning">
+ تم رفض طلب تسجيل شركتكم
+ </div>
+                    {% endif %}
+</p>
+                    {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+                            {{ form_errors(edit_form) }}
+                    {#{{ form_widget(edit_form) }}#}
+                    {#<div class="form-group">
+                    {{ form_label(edit_form.image,"صورة الشركة",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.image) }}
+                    {% if user.image is not defined %}
+                        {{ form_widget(edit_form.image, {'attr':{'class':'', 'data-intro':'أختر صورة '}}) }}
+                        {% else %}
+                        {{ form_widget(edit_form.image, {'attr':{'class':''}}) }}
+                        {% endif %}
+                    </div>#}
+                    <div class="form-group">
+                    {{ form_label(edit_form.username,"اسم الشركة",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.username) }}
+                    {{ form_widget(edit_form.username, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.email,"البريد الالكتروني",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.email) }}
+                    {{ form_widget(edit_form.email, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.description,"نبذة عن الشركة",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.description) }}
+                    {{ form_widget(edit_form.description, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.phoneNumber,"رقم الجوال",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.phoneNumber) }}
+                    {{ form_widget(edit_form.phoneNumber, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.categories,"القسم",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.categories) }}
+                    {% if user.categories is not defined %}
+                        {{ form_widget(edit_form.categories, {'attr':{'class':'form-control', 'data-intro':'أختر القسم '}}) }}
+                        {% else %}
+                        {{ form_widget(edit_form.categories, {'attr':{'class':'form-control', 'style':'height:100px;'}}) }}
+                    {% endif %}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.tCountry,"البلد",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.tCountry) }}
+                    {{ form_widget(edit_form.tCountry, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.tRegion,"المدينة",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.tRegion) }}
+                    {{ form_widget(edit_form.tRegion, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.tCity,"الحي",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.tCity) }}
+                    {{ form_widget(edit_form.tCity, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.tCityArea,"الشارع",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.tCityArea) }}
+                    {{ form_widget(edit_form.tCityArea, {'attr':{'class':'form-control'}}) }}
+                    </div>
+</div>
+                    <input type="submit" value="تعديل الشركة" class="btn btn-success btn-lg "/>
+                    {{ form_end(edit_form) }}
+                    {# <div class="text-right row">
+                        <div class="col-lg-12" style="display: inline-block">
+                            {{ form_start(delete_form) }}
+                            <input type="submit" value="حذف الشركة" class="btn btn-danger btn-lg">
+                            {{ form_end(delete_form) }}
+                </div>
+            </div>#}
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+        {% endblock %}
+
+        {% block javascripts %}
+        <script src="{{ asset('company/assets/js/intro.js') }}"></script>
+        <script>
+        introJs().start();
+</script>
+<script >
+$(document).ready(function () {
+            $('.progress').hide();
+            $('#akrem').on("submit", function (event) {
+                event.preventDefault();
+                $('.progress').show();
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ path('taseera_edit_picture', {'id':user.id}) }}",
+                    data: new FormData($(this)[0]),
+                    dataType: 'json',
+                    processData: false,
+                    cache: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response.photo);
+                        $('#doctorPic').attr('src', '{{ asset('backend/img/company/') }}' + response.photo);
+                        $('.doctorPic').attr('src', '{{ asset('backend/img/company/') }}' + response.photo);
+                        /*alert(response.message);
+                         console.log(response);*/
+                        $('.progress').hide();
+                    },
+                    error: function (response, desc, err) {
+                        if (response.responseJSON && response.responseJSON.message) {
+                            console.log('je suis là error');
+                            alert(response.responseJSON.message);
+                        }
+                        else {
+                            console.log('je suis là else');
+                            alert(desc);
+                        }
+                    }
+                });
+            });
+        });
+</script>
+        {% endblock %}

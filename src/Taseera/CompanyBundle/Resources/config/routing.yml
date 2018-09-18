@@ -1,0 +1,45 @@
+taseera_company_homepage:
+    path:     /
+    defaults: { _controller: TaseeraCompanyBundle:Default:index }
+
+taseera_company_items:
+    path:     /items
+    defaults: { _controller: TaseeraCompanyBundle:Default:itemsCompany }
+
+taseera_company_profile:
+    path:     /profile
+    defaults: { _controller: TaseeraCompanyBundle:Default:profileCompany }
+
+taseera_company_new:
+    path:     /new-item
+    defaults: { _controller: TaseeraCompanyBundle:Default:newCompany }
+
+taseera_company_message:
+    path:     /messages
+    defaults: { _controller: TaseeraCompanyBundle:Default:messageCompany }
+
+taseera_company_load_notification:
+    path:     /load-notif
+    defaults: { _controller: TaseeraCompanyBundle:Default:loadNotificationCompany }
+
+taseera_company_notification:
+    path:     /notifications
+    defaults: { _controller: TaseeraCompanyBundle:Default:notificationCompany }
+
+taseera_company_completeProfile:
+    path:     /complete-profile
+    defaults: { _controller: TaseeraCompanyBundle:Default:completeProfileCompany }
+
+taseera_company_showInformations:
+    path:     /show-ads-information/{id}
+    defaults: { _controller: TaseeraCompanyBundle:Default:showAdsInformation }
+
+taseera_edit_picture:
+    path:     /edit-picture-company/{id}
+    defaults: { _controller: TaseeraCompanyBundle:Default:editPictureCompany }
+
+taseera_edit_item:
+    path:     /edit-item/{id}
+    defaults: { _controller: TaseeraCompanyBundle:Default:editItem }
+
+

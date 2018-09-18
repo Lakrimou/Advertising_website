@@ -1,41 +1,158 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
-    <h1>Categories list</h1>
+    <div class="layout-content">
+        <div class="layout-content-body">
+            <div class="text-center m-b">
+                <h3 class="m-b-0">الأقسام</h3>
+                <small>جميع الأقسام</small>
+            </div>
+            <div class="row gutter-xs">
+                <div class="col-xs-12">
+                    <div class="card">
+                        {% for flashMessage in app.session.flashbag.get('msg') %}
+                            <br><br>
+                            <div class='alert alert-success alert-dismissable arabe'>
+                                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;
+                                </button>
+                                {{ flashMessage }}
+                            </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Namecategory</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
-                <td>{{ category.nameCategory }}</td>
-                <td>{{ category.description }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('category_show', { 'id': category.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('category_edit', { 'id': category.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                        {% endfor %}
+                        <div class="card-header">
+                            <div class="card-actions">
+                                <button type="button" class="card-action card-toggler" title="Collapse"></button>
+                                <button type="button" class="card-action card-reload" title="Reload"></button>
+                                <button type="button" class="card-action card-remove" title="Remove"></button>
+                            </div>
+                            <strong>قائمة الأقسام</strong>
+                        </div>
+                        <div class="card-body">
+                            <table id="demo-datatables-responsive-2"
+                                   class="table table-bordered table-striped table-nowrap dataTable" cellspacing="0"
+                                   width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>الصورة</th>
+                                    <th>القسم</th>
+                                    <th>Type</th>
+                                    <th class="text-center">عرض المعلومات</th>
+                                    <th class="text-center">تعديل</th>
+                                    <th class="text-center">حذف</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for category in categories %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a>
+                                        </td>
+                                        <td>
 
+
+                                            <a href="#" id="show-{{ category.id }}" data-toggle="modal"
+                                               data-target="#show-modal-{{ category.id }}">
+                                            <img src="{{ asset('backend/img/category/'~category.image) }}" width="100" height="auto" alt="category" class="thumbnail">
+                                            </a>
+
+
+
+
+
+                                        </td>
+                                        <td>{{ category.nameCategory }}</td>
+                                        <td>{% if category.subCategory == null %}
+                                            Fundamental     category {% else %}sub category
+                                            {% endif %}</td>
+                                        <td class="text-center"><a
+                                                    href="{{ path('category_show', { 'id': category.id }) }}"><i
+                                                        class="btn btn-success icon icon-eye"></i></a></td>
+                                        <td class="text-center"><a
+                                                    href="{{ path('category_edit', { 'id': category.id }) }}"><i
+                                                        class="btn btn-primary icon icon-refresh"></i></a></td>
+                                        <td class="text-center">
+                                            <a href="#" id="remove-customer-{{ category.id }}"
+                                               data-toggle="modal" data-target="#confirm-delete-{{ category.id }}"
+                                               class="btn btn-danger icon icon-remove">
+                                                {#<i class="btn btn-danger icon icon-remove"></i>#}</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <ul>
         <li>
             <a href="{{ path('category_new') }}">Create a new category</a>
         </li>
     </ul>
+{% for category in categories %}
+    <div class="modal fade" id="confirm-delete-{{ category.id }}" tabindex="-1"
+         role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">&times;
+                    </button>
+                    <h4 class="modal-title arabe" id="myModalLabel"> تأكيد الحذف </h4>
+                </div>
+
+                <div class="modal-body">
+                    <p class="arabe">
+                        هل تريد حذف القسم :
+                        <br>
+                        <strong>
+                            {{ category.nameCategory }}
+                        </strong>
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        رجوع
+                    </button>
+                    <a href="{{ path('category_deleted', { 'id': category.id }) }}"
+                       class="btn btn-danger arabe" id="btn-remove"> حذف</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="show-modal-{{ category.id }}" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title arabe" id="myModalLabel"> اظهار
+                        الصورة</h4>
+                </div>
+
+                <div class="modal-body">
+                    <center>
+                        <img src="{{ asset('backend/img/category/'~category.image) }}"
+                             width="500" height="300" id="large-img-{{ category.id }}">
+                    </center>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default arabe"
+                            data-dismiss="modal"> رجوع
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
 {% endblock %}

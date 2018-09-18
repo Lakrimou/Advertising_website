@@ -1,0 +1,79 @@
+taseera_backend_item:
+        resource: "@TaseeraBackendBundle/Resources/config/routing/item.yml"
+        prefix:   /item
+
+taseera_backend_category:
+    resource: "@TaseeraBackendBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+taseera_backend_homepage:
+    path:     /
+    defaults: { _controller: TaseeraBackendBundle:Default:index }
+
+userone_index:
+    path:     /company
+    defaults: { _controller: "TaseeraBackendBundle:UserOne:index" }
+    methods:  GET
+
+userone_show:
+    path:     company/{id}/show
+    defaults: { _controller: "TaseeraBackendBundle:UserOne:show" }
+    methods:  GET
+
+userone_new:
+    path:     company/new
+    defaults: { _controller: "TaseeraBackendBundle:UserOne:new" }
+    methods:  [GET, POST]
+
+userone_edit:
+    path:     company/{id}/edit
+    defaults: { _controller: "TaseeraBackendBundle:UserOne:edit" }
+    methods:  [GET, POST]
+
+userone_delete:
+    path:     company/{id}/delete
+    defaults: { _controller: "TaseeraBackendBundle:UserOne:delete" }
+    methods:  DELETE
+
+userone_delete_company:
+    path:     company/{id}/delete_company
+    defaults: { _controller: "TaseeraBackendBundle:UserOne:deleteCompany" }
+    methods:  GET
+
+userOne_confirmRefuseCompany:
+    path:    confirm-refuse-company/{id}
+    defaults: { _controller: "TaseeraBackendBundle:UserOne:confirmRefuseCompany"}
+
+userOne_confirmCompany:
+    path:    confirm-company/{id}
+    defaults: { _controller: "TaseeraBackendBundle:UserOne:confirmCompany"}
+
+usertwo_index:
+    path:     /normal_user
+    defaults: { _controller: "TaseeraBackendBundle:UserTwo:index" }
+    methods:  GET
+
+usertwo_show:
+    path:     /norma_luser/{id}/show
+    defaults: { _controller: "TaseeraBackendBundle:UserTwo:show" }
+    methods:  GET
+
+usertwo_new:
+    path:     /normal_user/new
+    defaults: { _controller: "TaseeraBackendBundle:UserTwo:new" }
+    methods:  [GET, POST]
+
+usertwo_edit:
+    path:     /normal_user/{id}/edit
+    defaults: { _controller: "TaseeraBackendBundle:UserTwo:edit" }
+    methods:  [GET, POST]
+
+usertwo_delete:
+    path:     /normal_user/{id}/delete
+    defaults: { _controller: "TaseeraBackendBundle:UserTwo:delete" }
+    methods:  DELETE
+
+usertwo_delete_normal_user:
+    path:     /normal_user/{id}/delete_user
+    defaults: { _controller: "TaseeraBackendBundle:UserTwo:deleteNormalUser" }
+    methods:  GET

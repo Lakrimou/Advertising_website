@@ -1,0 +1,387 @@
+{% extends '::front.html.twig' %}
+{% block title %}
+    {{ category.nameCategory|trans }} - الأقسام الفرعية - قسم
+{% endblock %}
+{% block meta %}
+    <meta name="description" content="إضافة إلى التصنيفات الرئيسية قام موقع تسعيرة بتقسيم هذه التصنيفات إلى أقسام فرعية لسهولة البحث والتواصل مع الشركات">
+{% endblock %}
+{% block body %}
+    <section class="inner-page-content border-bottom top-pad-50" style="padding-top: 150px !important;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li><a rel="v:url" property="v:title" href="{{ path('taseerafrontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+                    &nbsp;
+                    <li class="cAt"><a rel="v:url" property="v:title" href="{{ path('taseerafrontend_sub_category', {'id':category.id}) }}">
+                            {{ category.nameCategory|trans }} </a></li>
+                    &nbsp;
+
+                    &nbsp;
+                </ul>
+            </div>
+        </div>
+    <div class="row">
+    <div class="col-md-8 col-lg-9">
+    <!-- advertisement -->
+    <section class="classiera-advertisement advertisement-v5 section-pad-80 border-bottom">
+    <div class="tab-divs">
+    <div class="view-head">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-7 col-xs-8">
+                    <div class="total-post">
+                        <p>{{ 'الأقسام الفرعية'|trans }}
+
+                        </p>
+                    </div><!--total-post-->
+                </div><!--col-lg-6 col-sm-8-->
+                <div class="col-lg-6 col-sm-5 col-xs-4">
+                    <div class="view-as text-right flip">
+                        <a id="grid" class="grid active" href="#"><i class="fa fa-th"></i></a>
+                        <a id="list" class="list " href="#"><i class="fa fa-th-list"></i></a>
+                    </div><!--view-as tab-button-->
+                </div><!--col-lg-6 col-sm-4 col-xs-12-->
+            </div><!--row-->
+        </div><!--container-->
+    </div><!--view-head-->
+    <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="all">
+    <div class="container">
+    <div class="row">
+    {% for subcategory in subcategories %}
+        <!--col-lg-4-->
+        <div class="col-lg-4 col-md-4 col-sm-6 match-height item item-masonry" style="margin-top: 15px;">
+            <div class="classiera-box-div classiera-box-div-v5">
+                <figure class="clearfix">
+                    <div class="premium-img">
+                        <a href="{{ path('taseerafrontend_companies', {'id':subcategory.id}) }}">
+                        <img class="img-responsive"
+                             src="{{ asset('backend/img/category/'~subcategory.image) }}"
+                             alt="Photography Services in USA">
+                        </a>
+                        <a href="{{ path('taseerafrontend_companies', {'id':subcategory.id}) }}">
+                            <span class="hover-posts hovv">
+                                  {{ subcategory.nameCategory|trans }}
+                            </span>
+                        </a>
+
+
+                    </div><!--premium-img-->
+                    <div class="detail text-center">
+
+                        <div class="box-icon">
+                            <div>
+
+                            </div>
+                            {#<a href="{{ path('taseerafrontend_sendEmails', {'id':subcategory.id}) }}"><i
+                                        class="fa fa-envelope"></i></a>#}<br>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <a href=href="#" id="send-email-{{ subcategory.id }}"
+                               data-toggle="modal" data-target="#send-emails-{{ subcategory.id }}"
+                               ><i
+                                        class="fa fa-envelope"></i> {{ 'راسل جميع شركات هذا القسم في آن واحد'|trans }}  </a><br><br>
+                            {% endif %}
+
+
+
+                            <div class="modal fade" id="send-emails-{{ subcategory.id }}" tabindex="-1"
+                                 role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 999999999999;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">&times;
+                                            </button>
+                                            <h4 class="modal-title arabe" id="myModalLabel"> {{ 'إرسال رسالة إلى جميع'|trans }} {{ subcategory.nameCategory|trans }} </h4>
+                                        </div>
+
+                                        <div class="modal-body" style="padding: 8px; text-align: right">
+
+                                            <form action="#" class="form form-horizontal" style="padding: 15px;">
+                                                <div class="form-group">
+                                                    <label for="#subject">{{ 'الموضوع'|trans }}</label>
+                                                    <input type="text" id="subject" name="subject" class="subjecte form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="#msg">{{ 'الرسالة'|trans }}</label>
+                                                    <textarea type="text" id="msg" name="msg" class="msge form-control"></textarea>
+                                                </div>
+                                                <input type="hidden" id="subCatg" name="subject" class="subCatg form-control" value="{{ subcategory.id }}">
+                                            </form>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                     role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                                     aria-valuemax="100" style="width: 100%"></div>
+                                            </div>
+                                            <div class="ok">
+                                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                            </div>
+                                            <button type="button" class="btn btn-default btn-lg"
+                                                    data-dismiss="modal">
+                                                رجوع
+                                            </button>
+                                            <a href="#"
+                                               class="btn btn-primary arabe sendEmailsCompany btn-lg" id="sendEmailsCompany"> {{ 'إرسال'|trans }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+                        <a href="{{ path('taseerafrontend_companies', {'id':subcategory.id}) }}"
+                           class="btn btn-primary outline btn-style-five {% if subcategory.nameCategory|length > 20 %}numberCarac{% endif %}">
+                            {{ subcategory.nameCategory|trans }}
+                        </a>
+                    </div><!--detail text-center-->
+
+                </figure>
+            </div><!--row-->
+        </div>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <script>
+            jQuery(document).ready(function () {
+                console.log('ready for test');
+                jQuery('.progress').hide();
+                jQuery('#send-emails-{{ subcategory.id }} .ok').hide();
+                jQuery('#send-emails-{{ subcategory.id }} a.sendEmailsCompany').on("click", function (event) {
+                    event.preventDefault();
+                    console.log('click felcitation');
+                    jQuery('.progress').show();
+                    var subject = jQuery('#send-emails-{{ subcategory.id }} .subjecte').val();
+                    var msg = jQuery('#send-emails-{{ subcategory.id }} textarea.msge').val();
+                    var email = "{{ app.user.email }}";
+                    var identifiantUser = "{{ app.user.id }}";
+                    var subCatg = jQuery("#send-emails-{{ subcategory.id }} .subCatg").val();
+                    console.log(subject+' '+msg+' '+email+' '+subCatg);
+                    var url = "{{ path('taseerafrontend_sendEmails', {'id':'text'}) }}";
+                    url = url.replace("text", subCatg);
+                    jQuery.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: {email: email, subject: subject, msg: msg, identifiantUser: identifiantUser},
+                        dataType: 'json',
+                        success: function (response) {
+
+                            /*alert(response.message);
+                             console.log(response);*/
+                            jQuery('#send-emails-{{ subcategory.id }} .progress').hide();
+                            jQuery('#send-emails-{{ subcategory.id }} .subjecte').val()='';
+                            jQuery('#send-emails-{{ subcategory.id }} textarea.msge').val()='';
+                            jQuery("#send-emails-{{ subcategory.id }} .subCatg").val()='';
+                            jQuery('#send-emails-{{ subcategory.id }} .ok').show();
+                            jQuery('#send-emails-{{ subcategory.id }} .ok').append('<div>'+reponse.message+'</div>');
+
+                        },
+                        error: function (response, desc, err) {
+                            if (response.responseJSON && response.responseJSON.message) {
+                                console.log('je suis là error');
+                                jQuery('#send-emails-{{ subcategory.id }} .ok').append('<div>'+reponse.message+'</div>')
+                                alert(response.responseJSON.message);
+                            }
+                            else {
+                                console.log('je suis là else');
+                                alert(desc);
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+        {% endif %}
+
+        {% endfor %}
+        </div><!--row-->
+        </div><!--container-->
+        </div><!--tabpanel-->
+        </div><!--tab-content-->
+        </div><!--tab-divs-->
+        </section>
+        <!-- advertisement Style 5-->
+        </div><!--col-md-8 col-lg-9-->
+        <div class="col-md-4 col-lg-3" style="padding-top: 37px;">
+            <aside class="sidebar">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-6 match-height annonce-left">
+                        <div class="widget-box">
+                            <div class="widget-title"><h4>{{ 'أقسام أخرى'|trans }}</h4></div>
+                            <div class="widget-content">
+                                {% for threeCat in threeCats %}
+                                <div class="media footer-pr-widget-v1">
+                                    <div class="media-left">
+                                        <a class="media-img"
+                                           href="{{ path('taseerafrontend_sub_category', {'id':threeCat.id}) }}">
+                                            <img class="media-object" src="{{ asset('backend/img/category/'~threeCat.image) }}"
+                                                 alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <!--	<span class="price">
+                                                $15											</span> -->
+                                        <h4 class="media-heading">
+                                            <a href="{{ path('taseerafrontend_sub_category', {'id':threeCat.id}) }}">{{ threeCat.nameCategory|trans }}</a>
+                                        </h4>
+										{#<span class="category">
+						 الفئة:
+						<a href="hot-coffee-availbale-in-manchester.php">بناء</a>
+					</span>#}
+                                    </div>
+                                </div>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {#<div class="col-lg-12 col-md-12 col-sm-6 match-height">
+                        <div class="widget-box">
+                            <div class="widget-title"><h4>أحدث الإعلانات</h4></div>
+                            <div class="widget-content">
+                                <div class="media footer-pr-widget-v1">
+                                    <div class="media-left">
+                                        <a class="media-img"
+                                           href="hot-coffee-availbale-in-manchester.php">
+                                            <img class="media-object" src="wp-content/uploads/2017/05/02-2.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <!--	<span class="price">
+                                                QR5515											</span> -->
+                                        <h4 class="media-heading">
+                                            <a href="hot-coffee-availbale-in-manchester.php">مصانع الحجر
+                                                والرخام</a>
+                                        </h4>
+										<span class="category">
+						الفئة:
+						<a href="hot-coffee-availbale-in-manchester.php">بناء</a>
+					</span>
+                                    </div>
+                                </div>
+                                <div class="media footer-pr-widget-v1">
+                                    <div class="media-left">
+                                        <a class="media-img"
+                                           href="hot-coffee-availbale-in-manchester.php">
+                                            <img class="media-object" src="wp-content/uploads/2017/05/06-1.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <!--		<span class="price">
+
+السعر على المكالمة											</span> -->
+                                        <h4 class="media-heading">
+                                            <a href="hot-coffee-availbale-in-manchester.php">مصانع
+                                                الإسمنت</a>
+                                        </h4>
+										<span class="category">
+						الفئة:
+						<a href="hot-coffee-availbale-in-manchester.php">Technical Services</a>
+					</span>
+                                    </div>
+                                </div>
+                                <div class="media footer-pr-widget-v1">
+                                    <div class="media-left">
+                                        <a class="media-img" href="hot-coffee-availbale-in-manchester.php">
+                                            <img class="media-object" src="wp-content/uploads/2017/05/03.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <!--		<span class="price">
+                                                QR1500											</span> -->
+                                        <h4 class="media-heading">
+                                            <a href="hot-coffee-availbale-in-manchester.php">مصانع ومتاجر
+                                                الحديد</a>
+                                        </h4>
+										<span class="category">
+						الفئة:
+						<a href="hot-coffee-availbale-in-manchester.php">الكسارات و مصانع الرمل...</a>
+					</span>
+                                    </div>
+                                </div>
+                                <div class="media footer-pr-widget-v1">
+                                    <div class="media-left">
+                                        <a class="media-img" href="hot-coffee-availbale-in-manchester.php">
+                                            <img class="media-object" src="wp-content/uploads/2017/05/02.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <!--	<span class="price">
+                                                QR6599											</span> -->
+                                        <h4 class="media-heading">
+                                            <a href="hot-coffee-availbale-in-manchester.php">مصانع ومتاجر
+                                                الحديد</a>
+                                        </h4>
+										<span class="category">
+						الفئة:
+						<a href="hot-coffee-availbale-in-manchester.php">Mobile &amp; Tablets</a>
+					</span>
+                                    </div>
+                                </div>
+                                <div class="media footer-pr-widget-v1">
+                                    <div class="media-left">
+                                        <a class="media-img" href="hot-coffee-availbale-in-manchester.php">
+                                            <img class="media-object" src="wp-content/uploads/2017/05/05.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <!--	<span class="price">
+                                                QR999											</span> -->
+                                        <h4 class="media-heading">
+                                            <a href="hot-coffee-availbale-in-manchester.php">مصانع ومتاجر
+                                                الحديد</a>
+                                        </h4>
+										<span class="category">
+						الفئة:
+						<a href="hot-coffee-availbale-in-manchester.php">مصانع الإسمنت</a>
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>#}
+                    <div class="col-lg-12 col-md-12 col-sm-6 match-height">
+                        <div class="widget-box">
+                            <div class="widget-title"><h4>{{ 'الاشتراك والمتابعة'|trans }}</h4></div>
+
+                            <div class="widget-content">
+                                <div class="social-network">
+                                    <a class="social-icon social-icon-sm footer-social" href="#" target="_blank"><i
+                                                class="fa fa-facebook"></i></a>
+                                    <a class="social-icon social-icon-sm footer-social" href="#" target="_blank"><i
+                                                class="fa fa-twitter"></i></a>
+                                    <a class="social-icon social-icon-sm footer-social" href="#" target="_blank"><i
+                                                class="fa fa-pinterest"></i></a>
+
+                                    <a class="social-icon social-icon-sm footer-social" href="#" target="_blank"><i
+                                                class="fa fa-google-plus"></i></a> <a
+                                            class="social-icon social-icon-sm footer-social" href="#" target="_blank"><i
+                                                class="fa fa-youtube-play"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        </div><!--row-->
+        </div><!--container-->
+        </section>
+        <!--Content-->
+        {% endblock %}
+{% block javascripts %}
+
+{% endblock %}

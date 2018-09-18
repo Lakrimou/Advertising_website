@@ -1,0 +1,65 @@
+{% extends '::layout_company.html.twig' %}
+{% block title %}
+    معلومات عن الإعلان
+{% endblock %}
+{% block body %}
+<div class="content">
+    <div class="card ">
+        <div class="card-header ">
+            <h4 class="card-title" style="text-align: center">معلومات عن الإعلان</h4>
+
+        </div>
+        <div class="card-body ">
+            <div class="container">
+                <div style="padding: 15px;">
+                    <table class="table table-responsive table-hover table-bordered table-striped">
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ item.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>اسم االاعلان</th>
+                            <td>{{ item.nameItem }}</td>
+                        </tr>
+                        <tr>
+                            <th>وصف الاعلان</th>
+                            <td>{{ item.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>الصور</th><td>
+                                {% for element in item.Medias %}
+
+                                    <li style="display: inline-block;">
+                                        <img src="{{ asset('backend/img/medias/'~ element.media) }}" width="100" height="auto" alt="">
+                                    </li>
+                                {% endfor %}</td>
+                        </tr>
+                        <tr>
+                            <th>تاريخ نشر الاعلان</th>
+                            <td>{% if item.datePub %}{{ item.datePub|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>تاريخ انتهاء الاعلان</th>
+                            <td>{% if item.dateExpiration %}{{ item.dateExpiration|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>اظهار الايميل</th>
+                            <td>{% if item.bShowEmail %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>السعر</th>
+                            <td>{{ item.price }}</td>
+                        </tr>
+                        <tr>
+                            <th>القسم</th>
+                            {% for element in item.Categories %}
+                                <td>{{ element.nameCategory }}</td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

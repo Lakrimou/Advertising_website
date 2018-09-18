@@ -1,0 +1,250 @@
+{% extends '::front.html.twig' %}
+{% block title %}
+    - إعلانات الشركة
+{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('frontend/ivy/css/items.css') }}">
+{% endblock %}
+{% block meta %}
+    <meta charset="UTF-8">
+    <meta name="description" content={{ company.username }}-{{ category.nameCategory|trans }}>
+    <meta name="keywords" content="{{ category.nameCategory|trans }}, {{ sub_category.nameCategory|trans }}, {{ company.username }}">
+    <meta name="author" content="تسعيرة" />
+    <meta name="robots" content="index, follow, archive" />
+{% endblock %}
+{% block body %}
+    <section class="inner-page-content border-bottom top-pad-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="breadcrumb">
+                        <li><a rel="v:url" property="v:title" href="{{ path('taseerafrontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+                        &nbsp;
+                        <li class="cAt"><a rel="v:url" property="v:title" href="{{ path('taseerafrontend_sub_category', {'id':category.id}) }}">
+                                {{ category.nameCategory|trans }} </a></li>
+                        &nbsp;
+                        <li class="cAt"><a rel="v:url" property="v:title"
+                                           href="{{ path('taseerafrontend_companies', {'id': sub_category.id }) }}">{{ sub_category.nameCategory|trans }}</a>
+                        </li>
+                        {#<li class="cAt"><a rel="v:url" property="v:title"
+                                           href="{{ path('taseerafrontend_companies', {'id': sub_category.id }) }}">{{ company.username }}</a>
+                        </li>#}
+                        &nbsp;
+                    </ul>
+                </div>
+            </div>
+
+            <div style="height: 250px; background-image: url({{ asset('backend/img/category/covers/'~category.coverPicture) }})" class="center-block text-center">
+                <div class="center-block" style=" padding-top: 68px;">
+                    {#<img src="{{ asset('backend/img/company/'~ company.image) }}" width="100" height="100" alt="" class="img-circle">#}
+                    <div style="background-color: rgba(0,0,0,0.7); padding: 35px; width:60%; font-size: 35px; font-weight: bold; color: #FFFFFF; margin: auto;">{{ company.username }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-lg-9">
+                    <!-- advertisement -->
+                    <section class="classiera-advertisement advertisement-v5 section-pad-80 border-bottom">
+                        <div class="tab-divs">
+                            <div class="view-head">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-sm-12 col-xs-12">
+                                            <div class="total-post">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <p style="border: 1px solid #e0e0e0; padding: 15px;">
+                                                        <span class="glyphicon glyphicon-tower" aria-hidden="true"></span>
+                                                        <strong>{{ 'اسم الشركة'|trans }} : </strong> {{ company.username }}
+                                                    </p>
+                                                    <p style="border: 1px solid #e0e0e0; padding: 15px;">
+                                                        {% if company.phoneNumber is defined %}
+                                                            <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                                                            <strong>{{ 'رقم الهاتف'|trans }} : </strong>
+                                                            {{ company.phoneNumber }}
+                                                        {% endif %}
+                                                    </p>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <p style="border: 1px solid #e0e0e0; padding: 15px;">
+                                                        {% if company.tCountry is defined %}
+                                                            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                                                            <strong>{{ 'البلد'|trans }} : </strong>
+                                                            {{ company.tCountry }}
+                                                            {% endif %}
+                                                    </p>
+                                                    <p style="border: 1px solid #e0e0e0; padding: 15px;">
+                                                    {% if company.tRegion is defined %}
+                                                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                                                        <strong>{{ 'المدينة'|trans }} : </strong>
+                                                        {{ company.tRegion }}
+                                                        {% endif %}
+                                                    </p>
+                                                </div>
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 20px; border: 1px solid #e0e0e0;">
+                                                        <p>
+                                                            {% if company.description is defined %}
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                                                <strong>{{ 'نبذة عن الشركة'|trans }} : </strong>
+                                                                <p class="text-justify">
+                                                            {{ company.description }}
+                                                        </p>
+                                                                {% endif %}
+                                                        </p>
+                                                    </div>
+
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <p style="padding: 20px;">
+                                                        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                                                        <strong>{{ 'الإعلانات التي تخص شركة'|trans }} : </strong>
+                                                        <span><strong>
+												{{ company.username }}
+												</strong></span>
+                                                    </p>
+                                                </div>
+                                            </div><!--total-post-->
+                                        </div><!--col-lg-6 col-sm-8-->
+                                        <!--col-lg-6 col-sm-4 col-xs-12-->
+                                    </div><!--row-->
+                                </div><!--container-->
+                            </div><!--view-head-->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="all">
+                                    <div class="container">
+                                        <div class="row">
+                                            {% for item in items %}
+                                                <!--col-lg-4-->
+                                                <div class="col-lg-4 col-md-4 col-sm-6 match-height item item-masonry">
+                                                    <div class="classiera-box-div classiera-box-div-v5">
+                                                        <figure class="clearfix">
+                                                            {% if item.medias is not empty %}
+                                                            <div class="premium-img">
+                                                                {#{{ dump(item.medias|first) }}#}
+                                                                <img src="{{ asset('backend/img/medias/'~ item.medias|first.media) }}" alt="{{ item.nameItem }}">
+                                                                {#{% for media in item.medias %}#}
+                                                                {#<img src="{{ asset('backend/img/medias/'~ media.media) }}" alt="Chicago">#}
+                                                                {#<img class="img-responsive"
+                                                                     src="{{ asset('backend/img/company/'~company.image) }}"
+                                                                     alt="{{ company.username }}">#}
+                                                                <span class="hover-posts">
+															<a href="{{ path('taseerafrontend_adds', {'id':company.id, 'id_category':sub_category.id, 'id_item':item.id }) }}">{{ item.nameItem }}</a>
+														</span>
+                                                                {#{% endfor %}#}
+
+
+                                                            </div>
+                                                                {% endif %}<!--premium-img-->
+                                                            <div class="detail text-center">
+                                                                <br>
+
+                                                                {#<div class="box-icon">
+                                                                    <a href="mailto:{{ company.email }}"><i
+                                                                                class="fa fa-envelope"></i></a>
+                                                                </div>#}
+                                                                <a href="{#{{ path('taseerafrontend_adds', {'id':company.id, 'id_category':subcategory.id }) }}#}"
+                                                                   class="btn btn-primary outline btn-style-five">
+                                                                    {{ item.nameItem }}
+                                                                </a>
+                                                            </div><!--detail text-center-->
+
+                                                        </figure>
+                                                    </div><!--row-->
+                                                </div>
+
+                                            {% endfor %}
+                                        </div><!--row-->
+                                    </div><!--container-->
+                                </div><!--tabpanel-->
+                            </div><!--tab-content-->
+                        </div><!--tab-divs-->
+                    </section>
+                    <!-- advertisement Style 5-->
+                </div><!--col-md-8 col-lg-9-->
+                <div class="col-md-4 col-lg-3">
+                    <aside class="sidebar">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-6 match-height annonce-left">
+                                <div class="widget-box">
+                                    <div class="widget-title text-center" style="background-color: #912a5d;">
+                                        <div>
+                                            <img src="{{ asset('backend/img/company/'~ company.image) }}" width="150" height="auto" alt="" style="border: 5px solid #e0e0e0;">
+                                        </div>
+                                        <div style="padding-top: 15px;">
+                                            <h4 style="color: #ffffff;">{{ company.username }}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content text-center">
+                                        <div class="media footer-pr-widget-v1 text-center ">
+                                            {#<div class="media-left">
+                                                <a class="media-img"
+                                                   href="#">
+                                                    <img class="media-object" src="wp-content/uploads/2017/05/02-2.jpg"
+                                                         alt="">
+                                                </a>
+                                            </div>#}
+                                            <div class="media-body">
+                                                <h4 class="media-heading text-center" style="font-weight: bold; font-size: 14px;">
+                                                    {{ 'الايميل'|trans }} : {{ company.email }}
+                                                </h4><br>
+                                                <!--	<span class="price">
+                                                        $15
+                                                        								</span> -->
+                                                <h4 class="media-heading text-center">
+                                                    <a href="{{ path('taseerafrontend_sub_category', {'id':category.id}) }}">
+                                                        {{ 'الفئة'|trans }}:
+                                                        {% for category in company.categories %}{{ category.nameCategory|trans }}{% endfor %}
+                                                    </a>
+                                                </h4>
+                                                <span class="category">
+						{{ company.description }}
+					</span>
+                                            </div>
+                                        </div>
+                                        <div class="media footer-pr-widget-v1">
+                                            <div class="media-left">
+                                            </div>
+                                            <div class="media-body">
+                                                <!--		<span class="price">
+        السعر على المكالمة											</span> -->
+                                                <h4 class="media-heading">
+                                                    <a href="#">{{ company.tCountry }}</a>
+                                                </h4>
+                                                <span class="category">
+
+					</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-6 match-height">
+                                <div class="widget-box">
+                                    <div class="widget-title"><h4>{{ 'الاشتراك والمتابعة'|trans }}</h4></div>
+
+                                    <div class="widget-content">
+                                        <div class="social-network">
+                                            <a class="social-icon social-icon-sm footer-social" href="https://www.facebook.com/Tasseera-218512675372085/" target="_blank"><i
+                                                        class="fa fa-facebook"></i></a>
+                                            <a class="social-icon social-icon-sm footer-social" href="https://twitter.com/Tasseera_qtr" target="_blank"><i
+                                                        class="fa fa-twitter"></i></a>
+                                            <a class="social-icon social-icon-sm footer-social" href="https://www.pinterest.fr/tasseera/" target="_blank"><i
+                                                        class="fa fa-pinterest"></i></a>
+
+                                            <a class="social-icon social-icon-sm footer-social" href="https://plus.google.com/u/0/101411620271692572318" target="_blank"><i
+                                                        class="fa fa-google-plus"></i></a> <a
+                                                    class="social-icon social-icon-sm footer-social" href="https://www.youtube.com/channel/UCGXLaW9n8Eqn2WCYeEiqT9A" target="_blank"><i
+                                                        class="fa fa-youtube-play"></i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div><!--row-->
+        </div><!--container-->
+    </section>
+    <!--Content-->
+{% endblock %}

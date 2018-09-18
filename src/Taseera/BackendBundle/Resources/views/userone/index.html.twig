@@ -1,37 +1,332 @@
 {% extends '::base.html.twig' %}
-
 {% block body %}
-    <h1>Userones list</h1>
+    <div class="layout-content">
+        <div class="layout-content-body">
+            <div class="text-center m-b">
+                <h3 class="m-b-0">الشركات</h3>
+                <small>جميع الشركات المسجلة لدينا</small>
+            </div>
+            <div class="row gutter-xs">
+                <div class="col-xs-12">
+                    <div class="card">
+                        {% for flashMessage in app.session.flashbag.get('msg') %}
+                            <br><br>
+                            <div class='alert alert-success alert-dismissable arabe'>
+                                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;
+                                </button>
+                                {{ flashMessage }}
+                            </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for userOne in userOnes %}
-            <tr>
-                <td><a href="{{ path('userone_show', { 'id': userOne.id }) }}">{{ userOne.id }}</a></td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('userone_show', { 'id': userOne.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('userone_edit', { 'id': userOne.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                        {% endfor %}
+                        <div class="card-header">
+                            <div class="card-actions">
+                                <button type="button" class="card-action card-toggler" title="Collapse"></button>
+                                <button type="button" class="card-action card-reload" title="Reload"></button>
+                                <button type="button" class="card-action card-remove" title="Remove"></button>
+                            </div>
+                            <strong>قائمة الشركات</strong>
+                        </div>
+                        <div class="card-body">
+                            <table id="demo-datatables-responsive-2"
+                                   class="table table-bordered table-striped table-nowrap dataTable" cellspacing="0"
+                                   width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>اسم الشركة</th>
+                                    <th>الايميل</th>
+                                    <th>الحالة</th>
+                                    <th class="text-center">عرض المعلومات</th>
+                                    <th class="text-center">تعديل</th>
+                                    <th class="text-center">حذف</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for userOne in userOnes %}
+                                    <tr>
+                                        <td><a href="{{ path('userone_show', { 'id': userOne.id }) }}">{{ userOne.id }}</a>
+                                        </td>
+                                        <td>{{ userOne.sUsername }}</td>
+                                        <td>{{ userOne.sEmail }}</td>
+                                        <td>
+                                            {% if userOne.accepted == 1 %}
+                                                <a href="#" id="confirmCompany-{{ userOne.id }}" data-toggle="modal"
+                                                   data-target="#confirmConfirmedCompany-{{ userOne.id }}" class="label label-success"> مؤكدة</a>
 
+                                            {% elseif userOne.accepted == 0 %}
+                                                <a href="#" id="confirmCompany-{{ userOne.id }}" data-toggle="modal"
+                                                   data-target="#confirmNewCompany-{{ userOne.id }}"class="label label-warning">جديدة</a>
+
+                                            {% else %}
+                                                <a href="#" id="confirmCompany-{{ userOne.id }}" data-toggle="modal"
+                                                   data-target="#confirmRefuseCompany-{{ userOne.id }}" class="label label-danger">مرفوضة</a>
+
+
+                                            {% endif %}
+
+
+
+
+                                        </td>
+                                        <td class="text-center"><a href="{{ path('userone_show', { 'id': userOne.id }) }}"><i class="btn btn-success icon icon-eye"></i></a></td>
+                                        <td class="text-center"><a href="{{ path('userone_edit', { 'id': userOne.id }) }}"><i class="btn btn-primary icon icon-refresh"></i></a></td>
+                                        <td class="text-center">
+                                            <a href="#" id="remove-customer-{{ userOne.id }}"
+                                               data-toggle="modal" data-target="#confirm-delete-{{ userOne.id }}" class="btn btn-danger icon icon-remove">
+                                                {#<i class="btn btn-danger icon icon-remove"></i>#}</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <ul>
         <li>
-            <a href="{{ path('userone_new') }}">Create a new userOne</a>
+            <a href="{{ path('userone_new') }}">Create a new tUser</a>
         </li>
     </ul>
+    {% for userOne in userOnes %}
+        <div class="modal fade" id="confirm-delete-{{ userOne.id }}" tabindex="-1"
+             role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;
+                        </button>
+                        <h4 class="modal-title arabe" id="myModalLabel"> تأكيد الحذف </h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <p class="arabe">
+                            هل تريد حذف الشركة :
+                            <br>
+                            <strong>
+                                {{ userOne.sUsername }}
+                            </strong>
+                        </p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                            رجوع
+                        </button>
+                        <a href="{{ path('userone_delete_company', { 'id': userOne.id }) }}"
+                           class="btn btn-danger arabe" id="btn-remove"> حذف</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# change status to refuse #}
+        <div class="modal fade" id="confirmConfirmedCompany-{{ userOne.id }}" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;
+                        </button>
+                        <h4 class="modal-title arabe" id="myModalLabel"> <i class="fa fa-eye" aria-hidden="true"></i> تأكيد رفض عرض هذه الشركة  </h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="arabe">
+                                    هل ترفض عرض هذه الشركة :
+                                    <br><br>
+                                    <span style="border: 1px dashed black; padding: 3px">
+                                                        <strong class="arabe">
+                                                           اسم الشركة :
+                                                        </strong>
+                                        {{ userOne.sUsername }} </span><br><br>
+                                    {#<strong class="arabe">
+
+                                        تاريخ الموعد :
+                                    </strong>#}
+                                    {#{{ " اليوم : " ~ userOne.|date('d/m/Y') ~  " الساعة : " ~ evaluation.appointment.appointment|date('h') ~ " و : " ~ evaluation.appointment.appointment|date('I') ~ " دقيقة " }}#} <br>
+
+                                    <strong>
+
+                                        اسم الشركة :
+                                    </strong>
+                                    {{ userOne.sUsername }} <br>
+                                    <strong>
+                                        ايميل  :
+                                    </strong>
+                                    {{ userOne.sEmail }}
+
+                                </p>
+                                {#<p class="arabe" style="border: 1px dashed black; padding: 3px">
+                                    <strong style="text-decoration: underline">التعليق</strong><br>
+                                    {{ evaluation.feedback }}
+                                </p>#}
+                            </div>
+                            <div class="col-md-6">
+                                {% if userOne.image is defined %}
+                                    <h5>صورة الشركة</h5>
+                                    <img src="{{ asset('backend/img/company/'~ userOne.image) }}" alt="picture of the company {{ userOne.sUsername }}" width="150;" height="auto" class="thumbnail">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default arabe" data-dismiss="modal">
+                            رجوع
+                        </button>
+                        <a href="{{ path('userOne_confirmRefuseCompany', {'id': userOne.id}) }}"
+                           class="btn btn-danger arabe" id="btn-remove"> لا أوافق على عرض هذه الشركة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# confirm New company #}
+        <div class="modal fade" id="confirmNewCompany-{{ userOne.id }}" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;
+                        </button>
+                        <h4 class="modal-title arabe" id="myModalLabel"> <i class="fa fa-eye" aria-hidden="true"></i> تأكيد عرض  أو عدم عرض هذه الشركة  </h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="arabe">
+                                    هل تريد عرض  أو عدم عرض هذه الشركة :
+                                    <br><br>
+                                    <span style="border: 1px dashed black; padding: 3px">
+                                                        <strong class="arabe">
+                                                           اسم الشركة :
+                                                        </strong>
+                                        {{ userOne.sUsername }} </span><br><br>
+                                    {#<strong class="arabe">
+
+                                        تاريخ الموعد :
+                                    </strong>#}
+                                    {#{{ " اليوم : " ~ userOne.|date('d/m/Y') ~  " الساعة : " ~ evaluation.appointment.appointment|date('h') ~ " و : " ~ evaluation.appointment.appointment|date('I') ~ " دقيقة " }}#} <br>
+
+                                    <strong>
+
+                                        اسم الشركة :
+                                    </strong>
+                                    {{ userOne.sUsername }} <br>
+                                    <strong>
+                                        ايميل  :
+                                    </strong>
+                                    {{ userOne.sEmail }}
+
+                                </p>
+                                {#<p class="arabe" style="border: 1px dashed black; padding: 3px">
+                                    <strong style="text-decoration: underline">التعليق</strong><br>
+                                    {{ evaluation.feedback }}
+                                </p>#}
+                            </div>
+                            <div class="col-md-6">
+                                {% if userOne.image is defined %}
+                                    <h5>صورة الشركة</h5>
+                                    <img src="{{ asset('backend/img/company/'~ userOne.image) }}" alt="picture of the company {{ userOne.sUsername }}" width="150;" height="auto" class="thumbnail">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default arabe" data-dismiss="modal">
+                            رجوع
+                        </button>
+                        <a href="{{ path('userOne_confirmRefuseCompany', {'id': userOne.id}) }}"
+                           class="btn btn-danger arabe" id="btn-remove">  لا أوافق على عرض هذه الشركة</a>
+                        <a href="{{ path('userOne_confirmCompany', {'id': userOne.id}) }}"
+                           class="btn btn-success arabe" id="btn-success"> أوافق على عرض هذه الشركة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {# refuse company #}
+        <div class="modal fade" id="confirmRefuseCompany-{{ userOne.id }}" style="z-index: 999999999;" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;
+                        </button>
+                        <h4 class="modal-title arabe" id="myModalLabel"> <i class="fa fa-eye" aria-hidden="true"></i> تأكيد الموافقة على عرض التقييم  </h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="arabe">
+                                    هل توافق على عرض هذه الشركة :
+                                    <br><br>
+                                    <span style="border: 1px dashed black; padding: 3px">
+                                                        <strong class="arabe">
+                                                           اسم الشركة :
+                                                        </strong>
+                                        {{ userOne.sUsername }} </span><br><br>
+                                    {#<strong class="arabe">
+
+                                        تاريخ الموعد :
+                                    </strong>#}
+                                    {#{{ " اليوم : " ~ userOne.|date('d/m/Y') ~  " الساعة : " ~ evaluation.appointment.appointment|date('h') ~ " و : " ~ evaluation.appointment.appointment|date('I') ~ " دقيقة " }}#} <br>
+
+                                    <strong>
+
+                                        اسم الشركة :
+                                    </strong>
+                                    {{ userOne.sUsername }} <br>
+                                    <strong>
+                                        ايميل  :
+                                    </strong>
+                                    {{ userOne.sEmail }}
+
+                                </p>
+                                {#<p class="arabe" style="border: 1px dashed black; padding: 3px">
+                                    <strong style="text-decoration: underline">التعليق</strong><br>
+                                    {{ evaluation.feedback }}
+                                </p>#}
+                            </div>
+                            <div class="col-md-6">
+                                {% if userOne.image is defined %}
+                                    <h5>صورة الشركة</h5>
+                                    <img src="{{ asset('backend/img/company/'~ userOne.image) }}" alt="picture of the company {{ userOne.sUsername }}" width="150;" height="auto" class="thumbnail">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default arabe" data-dismiss="modal">
+                            رجوع
+                        </button>
+                        <a href="{{ path('userOne_confirmCompany', {'id': userOne.id}) }}"
+                           class="btn btn-success arabe" id="btn-success"> أوافق على عرض هذه الشركة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    {% endfor %}
 {% endblock %}
+

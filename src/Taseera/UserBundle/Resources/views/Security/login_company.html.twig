@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Authentification</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('plugins/bower_components/bootstrap-rtl-master/dist/css/bootstrap-rtl.min.css') }}"
+          rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="{{ asset('css/colors/blue.css') }}" id="theme" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style_business.css') }}">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+{#<div>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('fos_user_security_logout') }}">
+            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+    {% else %}
+        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+</div>#}
+
+{% if app.request.hasPreviousSession %}
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div class="flash-{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+<div>
+    {% trans_default_domain 'FOSUserBundle' %}
+    {#<div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>#}
+    <section id="wrapper" class="login-register" style="direction: rtl;">
+        <div class="login-box">
+            <div class="white-box">
+                <h1>Company</h1>
+                <form role="form" method="post" action="{{ path('company_login_check') }}"
+                      class="form-horizontal form-material" id="loginform">
+                    {#<form action="{{ path("fos_user_security_check") }}" class="form-horizontal form-material" id="loginform" method="post">#}
+                    {% if csrf_token %}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                    {% endif %}
+                    <h3 class="box-title m-b-20 arabe text-center authentification arabe"><i class="fa fa-lock"
+                                                                                             aria-hidden="true"></i>
+                        لوحة التحكم</h3>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <label for="username" class="arabe"><i class="fa fa-user" aria-hidden="true"></i>
+                                اسم الأدمين</label>
+                            <input class="form-control" placeholder="E-mail" name="_username" id="_username" type="text"
+                                   value="{{ last_username }}" required="required" autofocus>
+                            {#<input type="text" id="username" name="_username" value="{{ last_username }}"   class="form-control arabe" />#}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label for="password" class="arabe"><i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                                كلمة المرور</label>
+                            <input class="form-control" id="_password" placeholder="Password" name="_password"
+                                   type="password" required="required" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="checkbox checkbox-primary pull-left p-t-0">
+                                <input id="remember_me" name="_remember_me" value="on" type="checkbox"
+                                       value="Remember Me">
+
+                                <label for="remember_me" class="arabe"> تذكرني </label>
+                            </div>
+                            {#<a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a> #}
+                        </div>
+                    </div>
+                    <div class="form-group text-center m-t-20">
+                        <div class="col-xs-12">
+                            <input type="submit" id="_submit" name="_submit"
+                                   class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light arabe"  value="
+                                   تسجيل الدخول">
+                        </div>
+                    </div>
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="{{ asset('plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('plugins/bower_components/bootstrap-rtl-master/dist/js/bootstrap-rtl.min.js') }}"></script>
+<!-- Menu Plugin JavaScript -->
+<script src="{{ asset('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}"></script>
+
+<!--slimscroll JavaScript -->
+<script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+<!--Wave Effects -->
+<script src="{{ asset('js/waves.js') }}"></script>
+<!-- Custom Theme JavaScript -->
+<script src="{{ asset('js/custom.min.js') }}"></script>
+<!--Style Switcher -->
+<script src="{{ asset('plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
+</body>
+</html>

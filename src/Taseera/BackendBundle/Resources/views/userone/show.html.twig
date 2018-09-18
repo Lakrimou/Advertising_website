@@ -1,28 +1,60 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Userone</h1>
-
-    <table>
+<div class="layout-content">
+    <div class="layout-content-body">
+        <div class="title-bar">
+            <h1 class="title-bar-title">
+                <span class="d-ib">المعلومات التي تخص شركة {{ userOne.username }} </span>
+              <span class="d-ib">
+                <a class="title-bar-shortcut" href="#" title="Add to shortcut list" data-container="body"
+                   data-toggle-text="Remove from shortcut list" data-trigger="hover" data-placement="right"
+                   data-toggle="tooltip">
+                  <span class="sr-only">Add to shortcut list</span>
+                </a>
+              </span>
+            </h1>
+        </div>
+        <div class="row gutter-xs">
+            <div class="col-xs-12">
+                <div class="col-md-8">
+                    <div class="demo-form-wrapper">
+                        <table class="table table-responsive table-bordered table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ userOne.id }}</td>
             </tr>
+            <tr>
+                <th>اسم الشركة</th>
+                <td>{{ userOne.username }}</td>
+            </tr>
+            {% if userOne.image is defined %}
+                <tr>
+                    <th>الصورة</th>
+                    <td><img src="{{ asset('backend/img/company/'~userOne.image) }}" width="200" height="auto" alt=""></td>
+                </tr>
+            {% endif %}
         </tbody>
     </table>
+                        <div class="text-center" style="display: flex; justify-content: space-between">
 
-    <ul>
-        <li>
-            <a href="{{ path('userone_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('userone_edit', { 'id': userOne.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+                            <a href="{{ path('userone_edit', { 'id': userOne.id }) }}"
+                               class="btn btn-success btn-lg">تعديل</a>
+
+                            {{ form_start(delete_form) }}
+                            <input type="submit" class="btn btn-danger btn-lg" value="حذف القسم">
+                            {{ form_end(delete_form) }}
+                            <a href="{{ path('userone_index') }}" class="btn btn-primary btn-lg">الرجوع الى قائمة
+                                الأقسام <i class="icon icon-hand-o-left"></i> </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

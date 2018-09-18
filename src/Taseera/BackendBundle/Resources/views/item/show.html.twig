@@ -1,40 +1,65 @@
-{% extends 'base.html.twig' %}
+{% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Item</h1>
-
-    <table>
+<div class="layout-content">
+    <div class="layout-content-body">
+        <div class="title-bar">
+            <h1 class="title-bar-title">
+                <span class="d-ib">المعلومات التي تخص اعلان {{ item.nameItem }} </span>
+              <span class="d-ib">
+                <a class="title-bar-shortcut" href="#" title="Add to shortcut list" data-container="body"
+                   data-toggle-text="Remove from shortcut list" data-trigger="hover" data-placement="right"
+                   data-toggle="tooltip">
+                  <span class="sr-only">Add to shortcut list</span>
+                </a>
+              </span>
+            </h1>
+        </div>
+        <div class="row gutter-xs">
+            <div class="col-xs-12">
+                <div class="col-md-8">
+                    <div class="demo-form-wrapper">
+                        <table class="table table-responsive table-bordered table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ item.id }}</td>
             </tr>
             <tr>
-                <th>Nameitem</th>
+                <th>الصور</th><td>
+                {% for element in item.Medias %}
+
+                    <li style="display: inline-block;">
+                        <img src="{{ asset('backend/img/medias/'~ element.media) }}" width="100" height="auto" alt="">
+                    </li>
+                {% endfor %}</td>
+            </tr>
+            <tr>
+                <th>اسم الاعلان</th>
                 <td>{{ item.nameItem }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>وصف الاعلان</th>
                 <td>{{ item.description }}</td>
             </tr>
             <tr>
-                <th>Datepub</th>
+                <th>تارخ اضافة الاعلان</th>
                 <td>{% if item.datePub %}{{ item.datePub|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Dateupdate</th>
+                <th>تاريخ تعديل الاعلان</th>
                 <td>{% if item.dateUpdate %}{{ item.dateUpdate|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Dateexpiration</th>
+                <th>تاريخ نهاية الاعلان</th>
                 <td>{% if item.dateExpiration %}{{ item.dateExpiration|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Bspam</th>
+                <th> اعلان غير مرغوب فيه</th>
                 <td>{% if item.bSpam %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Bactive</th>
+                <th>اعلان مفعل</th>
                 <td>{% if item.bActive %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
@@ -42,33 +67,52 @@
                 <td>{% if item.bEnabled %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Sip</th>
+                <th>الأدريس اب</th>
                 <td>{{ item.sIp }}</td>
             </tr>
             <tr>
-                <th>Bshowemail</th>
+                <th>اظهار الاعلان</th>
                 <td>{% if item.bShowEmail %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Bpremium</th>
+                <th>بريميم</th>
                 <td>{% if item.bPremium %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Price</th>
+                <th>السعر</th>
                 <td>{{ item.price }}</td>
             </tr>
             <tr>
-                <th>Contactname</th>
+                <th>اسم جهة الاتصال</th>
                 <td>{{ item.contactName }}</td>
             </tr>
             <tr>
-                <th>Contactemail</th>
+                <th>ايميل جهة الاتصال</th>
                 <td>{{ item.contactEmail }}</td>
             </tr>
         </tbody>
     </table>
+                        <div class="text-center" style="display: flex; justify-content: space-between">
 
-    <ul>
+
+                            <a href="{{ path('item_edit', { 'id': item.id }) }}"
+                               class="btn btn-success btn-lg">تعديل</a>
+
+                            {{ form_start(delete_form) }}
+                            <input type="submit" class="btn btn-danger btn-lg" value="حذف الاعلان">
+                            {{ form_end(delete_form) }}
+                            <a href="{{ path('item_index') }}" class="btn btn-primary btn-lg">الرجوع الى قائمة
+                                الاعلانات <i class="icon icon-hand-o-left"></i> </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {#<ul>
         <li>
             <a href="{{ path('item_index') }}">Back to the list</a>
         </li>
@@ -80,5 +124,5 @@
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+    </ul>#}
 {% endblock %}

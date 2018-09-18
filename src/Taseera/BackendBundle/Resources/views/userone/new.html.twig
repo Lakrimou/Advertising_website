@@ -1,16 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Userone creation</h1>
+    <div class="layout-content">
+        <div class="layout-content-body">
+            <div class="title-bar">
+                <h1 class="title-bar-title">
+                    <span class="d-ib">اضافة شركة</span>
+              <span class="d-ib">
+                <a class="title-bar-shortcut" href="#" title="Add to shortcut list" data-container="body"
+                   data-toggle-text="Remove from shortcut list" data-trigger="hover" data-placement="right"
+                   data-toggle="tooltip">
+                  <span class="sr-only">Add to shortcut list</span>
+                </a>
+              </span>
+                </h1>
+                <!--<p class="title-bar-description">
+                    <small>You can personalize your dashboard by using <a href="widgets.html">widgets</a>.</small>
+                </p>-->
+            </div>
+            <div class="row gutter-xs">
+                <div class="col-xs-12">
+                    <div class="col-md-8">
+                        <div class="demo-form-wrapper">
+                            <form action="
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('userone_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{{ path('user_one_registration') }}
+
+" {#{{ form_enctype(form) }}#} method="POST" class="fos_user_registration_register">
+                                {{ form_widget(form) }}
+                                <div class="form-group text-center">
+                                    <input type="submit" value="{{ 'registration.submit'|trans }}" class="btn btn-primary sharp btn-md btn-style-one" />
+                                </div>
+                            </form>
+                            <div class="text-right">
+                                <a href="{{ path('userone_index') }}" class="btn btn-primary btn-lg">الرجوع الى قائمة الشركات <i class="icon icon-hand-o-left"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,74 @@
+{% extends '::front.html.twig' %}
+{% block title %}
+     - الأقسام
+{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="تسعيرة يضم جميع حاجياتك في الحياة اليومية والمهنية وقد قمنا بتصنيف هذه الإحتياجات إلى عدة أقسام لتسهيل عملية البحث والتواصل مع الشركات في أنٍ واحد">
+{% endblock %}
+{% block body %}
+<section class="inner-page-content border-bottom top-pad-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <!-- advertisement -->
+                <section class="classiera-advertisement advertisement-v5 section-pad-80 border-bottom">
+                    <div class="tab-divs">
+                        <div class="view-head">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-7 col-xs-8">
+                                        <div class="total-post">
+                                        </div><!--total-post-->
+                                    </div><!--col-lg-6 col-sm-8-->
+                                    <div class="col-lg-6 col-sm-5 col-xs-4">
+                                        <div class="view-as text-right flip">
+                                            <a id="grid" class="grid active" href="#"><i class="fa fa-th"></i></a>
+                                            <a id="list" class="list " href="#"><i class="fa fa-th-list"></i></a>
+                                        </div><!--view-as tab-button-->
+                                    </div><!--col-lg-6 col-sm-4 col-xs-12-->
+                                </div><!--row-->
+                            </div><!--container-->
+                        </div><!--view-head-->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="all">
+                                <div class="container">
+                                    <div class="row">
+                                        {% for category in categories %}
+                                            <div class="col-lg-3 col-md-3 col-sm-6 match-height item item-masonry">
+                                                <div class="classiera-box-div classiera-box-div-v5">
+                                                    <figure class="clearfix">
+                                                        <div class="premium-img">
+
+                                                            <img class="img-responsive" src="{{ asset('backend/img/category/'~category.image) }}"
+                                                                 alt="category">
+																													<span class="hover-posts">
+															<a href="{{ path('taseerafrontend_sub_category', {'id':category.id}) }}">{{ 'عرض'|trans }}</a>
+														</span>
+
+
+                                                        </div><!--premium-img-->
+                                                        <!--detail text-center-->
+                                                        <figcaption>
+
+                                                            <h5><a href="{{ path('taseerafrontend_sub_category', {'id':category.id}) }}">{{ category.nameCategory|trans }}</a>
+                                                            </h5>
+
+                                                            {#<p class="description">أضف تعليق</p>#}
+                                                        </figcaption>
+                                                    </figure>
+                                                </div><!--row-->
+                                            </div>
+                                        {% endfor %}
+                                    </div><!--row-->
+                                </div><!--container-->
+                            </div><!--tabpanel-->
+                        </div><!--tab-content-->
+                    </div><!--tab-divs-->
+                </section>
+                <!-- advertisement Style 5-->
+            </div><!--col-md-8 col-lg-9-->
+        </div><!--row-->
+    </div><!--container-->
+</section>
+{% endblock %}

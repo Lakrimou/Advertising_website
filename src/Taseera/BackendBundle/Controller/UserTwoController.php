@@ -1,6 +1,6 @@
 <?php
 
-namespace Taseera\UserBundle\Controller;
+namespace Taseera\BackendBundle\Controller;
 
 use Taseera\UserBundle\Entity\UserTwo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,9 +21,28 @@ class UserTwoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $userTwos = $em->getRepository('TaseeraUserBundle:UserTwo')->findAll();
+        $users = $em->getRepository('TaseeraUserBundle:User')->findAll();
+        $i = 0;
+        $utilisateurs = array();
+        $tab = array();
+        foreach ($users as $user)
+        {
+            //var_dump($user);
+            foreach ($userTwos as $userTwo){
+                //var_dump($userOne);
+                if($userTwo->getId()==$user->getId())
+                {
+                    $utilisateurs[$i]['id'] = $user->getId();
+                    $utilisateurs[$i]['sUsername'] = $user->getUsername();
+                    $utilisateurs[$i]['sEmail'] = $user->getEmail();
+                    $i++;
+                }
+            }
+            $tab['data'] = $utilisateurs;
+        }
 
-        return $this->render('usertwo/index.html.twig', array(
-            'userTwos' => $userTwos,
+        return $this->render('TaseeraBackendBundle:usertwo:index.html.twig', array(
+            'userTwos' => $utilisateurs,
         ));
     }
 
@@ -45,7 +64,7 @@ class UserTwoController extends Controller
             return $this->redirectToRoute('usertwo_show', array('id' => $userTwo->getId()));
         }
 
-        return $this->render('usertwo/new.html.twig', array(
+        return $this->render('TaseeraBackendBundle:usertwo:new.html.twig', array(
             'userTwo' => $userTwo,
             'form' => $form->createView(),
         ));
@@ -59,7 +78,7 @@ class UserTwoController extends Controller
     {
         $deleteForm = $this->createDeleteForm($userTwo);
 
-        return $this->render('usertwo/show.html.twig', array(
+        return $this->render('TaseeraBackendBundle:usertwo:show.html.twig', array(
             'userTwo' => $userTwo,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,7 +100,7 @@ class UserTwoController extends Controller
             return $this->redirectToRoute('usertwo_edit', array('id' => $userTwo->getId()));
         }
 
-        return $this->render('usertwo/edit.html.twig', array(
+        return $this->render('TaseeraBackendBundle:usertwo:edit.html.twig', array(
             'userTwo' => $userTwo,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -120,5 +139,13 @@ class UserTwoController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function deleteNormalUserAction(Request $request, User $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+        return $this->redirectToRoute('usertwo_index');
     }
 }

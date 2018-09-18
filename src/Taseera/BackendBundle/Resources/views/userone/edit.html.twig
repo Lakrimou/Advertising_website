@@ -1,21 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Userone edit</h1>
+    <div class="layout-content">
+        <div class="layout-content-body">
+            <div class="title-bar">
+                <h1 class="title-bar-title">
+                    <span class="d-ib">تعديل الشركة</span>
+              <span class="d-ib">
+                <a class="title-bar-shortcut" href="#" title="Add to shortcut list" data-container="body"
+                   data-toggle-text="Remove from shortcut list" data-trigger="hover" data-placement="right"
+                   data-toggle="tooltip">
+                  <span class="sr-only">Add to shortcut list</span>
+                </a>
+              </span>
+                </h1>
+                <!--<p class="title-bar-description">
+                    <small>You can personalize your dashboard by using <a href="widgets.html">widgets</a>.</small>
+                </p>-->
+            </div>
+            <div class="row gutter-xs">
+                <div class="col-xs-12">
+                    <div class="col-md-8">
+                        <div class="demo-form-wrapper">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                            {{ form_start(edit_form) }}
+                            {{ form_widget(edit_form) }}
+                            <input type="submit" value="تعديل الشركة" class="btn btn-success btn-lg"/>
+                            {{ form_end(edit_form) }}
+                            <div class="text-right row">
+                                <div class="col-lg-12" style="display: inline-block">
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="حذف الشركة" class="btn btn-danger btn-lg">
+                                    {{ form_end(delete_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('userone_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+                                    <a href="{{ path('userone_index') }}" class="btn btn-primary btn-lg">الرجوع الى
+                                        قائمة الشركات <i class="icon icon-hand-o-left"></i> </a>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+

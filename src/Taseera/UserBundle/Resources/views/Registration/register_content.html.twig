@@ -1,11 +1,32 @@
-<form action="
+<div style="margin-top: 100px;">
+    <div>
+        <div class="text-left">
+            <a href="{{ path('fos_user_security_login') }}" class="btn btn-lg btn-primary text-center">الدخول</a>
+        </div>
+    </div>
+    <div class="text-center">
+        {% if app.request.attributes.get('_route') == 'user_one_registration' %}
+        <h2> التسجيل للشركات</h2>
+        {% endif %}
+        {% if app.request.attributes.get('_route') == 'user_two_registration' %}
+            <h2> التسجيل للمستخدمين</h2>
+        {% endif %}
+    </div>
+    <form action="
 
 {% if app.request.attributes.get('_route') == 'user_one_registration' %}
-{{ path('user_one_registration_register') }}
+{{ path('user_one_registration') }}
 {% endif %}
 
 {% if app.request.attributes.get('_route') == 'user_two_registration' %}
-{{ path('user_two_registration_register') }}
+{{ path('user_two_registration') }}
 {% endif %}
 
-"{{ form_enctype(form) }} method="POST" class="fos_user_registration_register"></form>
+"
+          method="POST" class="fos_user_registration_register">
+        {{ form_widget(form) }}
+        <div class="form-group text-center">
+            <input type="submit" value="تسجيل" class="btn btn-primary sharp btn-md btn-style-one" />
+        </div>
+    </form>
+</div>

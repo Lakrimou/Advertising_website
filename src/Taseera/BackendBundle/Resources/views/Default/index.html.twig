@@ -1,0 +1,307 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div class="layout-content">
+        <div class="layout-content-body">
+            <div class="title-bar">
+                <h1 class="title-bar-title">
+                    <span class="d-ib">لوحة التحكم الرئيسية</span>
+              <span class="d-ib">
+                <a class="title-bar-shortcut" href="#" title="Add to shortcut list" data-container="body"
+                   data-toggle-text="Remove from shortcut list" data-trigger="hover" data-placement="right"
+                   data-toggle="tooltip">
+                  <span class="sr-only">Add to shortcut list</span>
+                </a>
+              </span>
+                </h1>
+                <!--<p class="title-bar-description">
+                    <small>You can personalize your dashboard by using <a href="widgets.html">widgets</a>.</small>
+                </p>-->
+            </div>
+            <div class="row gutter-xs">
+                <div class="col-md-6 col-lg-3 col-lg-push-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-middle media-left">
+                      <span class="bg-primary circle sq-48">
+                        <span class="icon icon-user"></span>
+                      </span>
+                                </div>
+                                <div class="media-middle media-body">
+                                    <h6 class="media-heading">الزائرين</h6>
+                                    <h3 class="media-heading">
+                                        <span class="fw-l">{{ visitorNumbers }}</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 col-lg-push-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-middle media-left">
+                      <span class="bg-success circle sq-48">
+                        <span class="icon icon-leanpub"></span>
+                      </span>
+                                </div>
+                                <div class="media-middle media-body">
+                                    <h6 class="media-heading">الاعلانات</h6>
+                                    <h3 class="media-heading">
+                                        <span class="fw-l">{{ itemNumbers }}</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 col-lg-pull-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-middle media-left">
+                      <span class="bg-primary circle sq-48">
+                        <span class="icon icon-building"></span>
+                      </span>
+                                </div>
+                                <div class="media-middle media-body">
+                                    <h6 class="media-heading">الشركات</h6>
+                                    <h3 class="media-heading">
+                                        <span class="fw-l">{{ companyNumbers }}</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 col-lg-pull-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-middle media-left">
+                      <span class="bg-success circle sq-48">
+                        <span class="icon icon-usd"></span>
+                      </span>
+                                </div>
+                                <div class="media-middle media-body">
+                                    <h6 class="media-heading">إجمالي المبيعات</h6>
+                                    <h3 class="media-heading">
+                                        <span class="fw-l">$155,352.47</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gutter-xs">
+                <div class="col-xs-12 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">نظرة عامة على الزائرين</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-chart">
+                                <canvas data-chart="line" data-animation="false"
+                                        data-labels='["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]'
+                                        data-values='[{"label": "This week", "backgroundColor": "transparent", "borderColor": "#0ac29d", "pointBackgroundColor": "#0ac29d", "data": [29432, 20314, 17665, 22162, 31194, 35053, 29298]}, {"label": "Last week", "backgroundColor": "transparent", "borderColor": "#0b88d5", "pointBackgroundColor": "#0b88d5", "data": [9956, 22607, 30963, 22668, 16338, 22222, 39238]}]'
+                                        data-tooltips='{"mode": "label"}' data-hide='["gridLinesX", "legend"]'
+                                        height="150"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">19,429 المسجلين</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-chart">
+                                <canvas data-chart="bar" data-animation="false"
+                                        data-labels='["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]'
+                                        data-values='[{"label": "This week", "backgroundColor": "#0ac29d", "borderColor": "#0ac29d", "data": [3089, 2132, 1854, 2326, 3274, 3679, 3075]}, {"label": "Last week", "backgroundColor": "#0b88d5", "borderColor": "#0b88d5", "data": [983, 2232, 3057, 2238, 1613, 2194, 3874]}]'
+                                        data-tooltips='{"mode": "label"}' data-hide='["gridLinesX", "legend"]'
+                                        height="150"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gutter-xs">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-middle media-left">
+                      <span class="bg-gray sq-64 circle">
+                        <span class="icon icon-flag"></span>
+                      </span>
+                                </div>
+                                <div class="media-middle media-body">
+                                    <h3 class="media-heading">
+                                        <span class="fw-l">50</span>
+                                        <small>الاعلانات المؤكدة</small>
+                                    </h3>
+                                    <small>جميع الاعلانات المؤكدة</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-middle media-left">
+                                    <div class="media-chart">
+                                        <canvas data-chart="doughnut" data-animation="false"
+                                                data-labels='["Resolved", "Unresolved"]'
+                                                data-values='[{"backgroundColor": ["#0ac29d", "#555"], "data": [879, 377]}]'
+                                                data-hide='["legend", "scalesX", "scalesY", "tooltips"]' height="64"
+                                                width="64"></canvas>
+                                    </div>
+                                </div>
+                                <div class="media-middle media-body">
+                                    <h2 class="media-heading">
+                                        <span class="fw-l">50</span>
+                                        <small>الاعلانات الجديدة</small>
+                                    </h2>
+                                    <small>الاعلانات الجديدة التي لم تؤكد</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-middle media-left">
+                                    <div class="media-chart">
+                                        <canvas data-chart="doughnut" data-animation="false"
+                                                data-labels='["Resolved", "Unresolved"]'
+                                                data-values='[{"backgroundColor": ["#555", "#0ac29d"], "data": [879, 377]}]'
+                                                data-hide='["legend", "scalesX", "scalesY", "tooltips"]' height="64"
+                                                width="64"></canvas>
+                                    </div>
+                                </div>
+                                <div class="media-middle media-body">
+                                    <h2 class="media-heading">
+                                        <span class="fw-l">377</span>
+                                        <small>الاعلانات المرفوضة</small>
+                                    </h2>
+                                    <small>الاعلانات التي تم رفضها</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gutter-xs">
+                <div class="col-md-12">
+                    <div class="row gutter-xs">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-actions">
+                                        <button type="button" class="card-action card-toggler"
+                                                title="Collapse"></button>
+                                        <button type="button" class="card-action card-reload" title="Reload"></button>
+                                        <button type="button" class="card-action card-remove" title="Remove"></button>
+                                    </div>
+                                    <strong>الشركات</strong>
+                                </div>
+                                <div class="card-body" data-toggle="match-height">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            الشركات
+                                        </div>
+                                        <table class="table table-bordered table-responsive table-hover table-striper">
+
+                                            <tr>
+                                                <td>اسم الشركة</td>
+                                                <td>موقع الشركة</td>
+                                            </tr>
+                                            {% for company in companies %}
+                                            <tr>
+                                                <td>{{ company.username }}</td>
+                                                <td>{{ company.email }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-actions">
+                                        <button type="button" class="card-action card-toggler"
+                                                title="Collapse"></button>
+                                        <button type="button" class="card-action card-reload" title="Reload"></button>
+                                        <button type="button" class="card-action card-remove" title="Remove"></button>
+                                    </div>
+                                    <strong>المستخدمين </strong>
+                                </div>
+                                <div class="card-body" data-toggle="match-height">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            المستخدمين
+                                        </div>
+                                        <table class="table table-bordered table-responsive table-hover table-striper">
+                                            <tr>
+                                                <td>اسم المستخدم</td>
+                                                <td>موقع المستخدم</td>
+                                            </tr>
+                                            {% for user in users %}
+                                            <tr>
+                                                <td>{{ user.username }}</td>
+                                                <td>{{ user.email }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-actions">
+                                        <button type="button" class="card-action card-toggler"
+                                                title="Collapse"></button>
+                                        <button type="button" class="card-action card-reload" title="Reload"></button>
+                                        <button type="button" class="card-action card-remove" title="Remove"></button>
+                                    </div>
+                                    <strong>الاعلانات</strong>
+                                </div>
+                                <div class="card-body" data-toggle="match-height">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            الاعلانات
+                                        </div>
+                                        <table class="table table-bordered table-responsive table-hover table-striper">
+                                            <tr>
+                                                <td>الاعلان</td>
+                                                <td>اسم الشركة</td>
+                                            </tr>
+                                            {% for item in items %}
+                                            <tr>
+                                                <td>{{ item.nameItem }}</td>
+                                                <td>{{ item.datePub|date('Y-m-d H:i:s') }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+services:
+    TaseerafrontendBundle.locale_listener:
+        class: Taseera\frontendBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }
+#    taseerafrontend.example:
+#        class: Taseera\frontendBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

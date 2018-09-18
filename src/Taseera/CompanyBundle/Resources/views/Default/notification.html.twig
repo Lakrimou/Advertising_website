@@ -1,0 +1,32 @@
+{% extends '::layout_company.html.twig' %}
+{% block title %}
+    الإشعارات
+{% endblock %}
+{% block body %}
+<div class="content">
+    <div class="card ">
+        <div class="card-header ">
+            <h4 class="card-title" style="text-align: center">الإشعارات</h4>
+
+
+        </div>
+        <div class="card-body ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-responsive table-bordered table-striped table-hover">
+                            {% for notification in notifications %}
+                                <tr>
+                                <td>
+                                {{ notification.notification }} &nbsp;
+                                    يوم
+                                    {{ notification.dateNotification | date('Y-m-d') }}
+                                    على الساعة
+                                    {{ notification.dateNotification | date('H') }}h
+                                    {{ notification.dateNotification | date('i') }}min
+                                    {{ notification.dateNotification | date('s') }}s
+</td>
+</tr>
+                            {% endfor %}
+                        </table></div></div></div></div></div></div>
+{% endblock %}

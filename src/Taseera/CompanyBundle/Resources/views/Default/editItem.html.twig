@@ -1,0 +1,68 @@
+{% extends "::layout_company.html.twig" %}
+{% block body %}
+    <div class="content">
+        <div class="card ">
+            <div class="card-header ">
+                تعديل الإعلان
+            </div>
+            <div class="card-body">
+                <div class="demo-form-wrapper">
+                    {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+                    {{ form_errors(edit_form) }}
+                    <div class="form-group">
+                        {{ form_label(edit_form.nameItem, "اسم االاعلان", {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_errors(edit_form.nameItem) }}
+                        {{ form_widget(edit_form.nameItem, {'attr': {'class': 'form-control'}}) }}
+
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.description, "وصف الاعلان", {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_errors(edit_form.description) }}
+                        {{ form_widget(edit_form.description, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.price, "السعر", {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_errors(edit_form.price) }}
+                        {{ form_widget(edit_form.price, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.categories, "القسم", {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_errors(edit_form.categories) }}
+                        {{ form_widget(edit_form.categories, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <ul class="medias"
+                        data-prototype="{{ form_widget(edit_form.medias.vars.prototype)|e('html_attr') }}">
+                        {% for element in edit_form.medias %}
+                            <li>
+                                {#{{ dump(element.media.vars.data) }}#}
+                                <img src="{{ asset('backend/img/medias/'~ element.media.vars.data) }}" width="100" height="auto" alt="">
+                                {{ form_widget(element.media) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    {#<div id="appbundle_user_files" data-prototype="">
+                    </div>#}
+                    <input type="submit" class="btn btn-success btn-lg" value="اضافة الاعلان"/>
+                    {{ form_end(edit_form) }}
+
+                    {#{{ form_start(edit_form) }}
+                        {{ form_widget(edit_form) }}
+                        <input type="submit" class="btn btn-success btn-lg" value="تعديل" />
+                    {{ form_end(edit_form) }}#}
+                    <div class="text-right row">
+                        <div class="col-lg-12" style="display: inline-block">
+                            {{ form_start(delete_form) }}
+                            <input type="submit" value="حذف الاعلان" class="btn btn-danger btn-lg">
+                            {{ form_end(delete_form) }}
+
+
+
+                            <a href="{{ path('item_index') }}" class="btn btn-primary btn-lg">الرجوع الى قائمة الاعلانات <i class="icon icon-hand-o-left"></i> </a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

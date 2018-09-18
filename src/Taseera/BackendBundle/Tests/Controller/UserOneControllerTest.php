@@ -1,6 +1,6 @@
 <?php
 
-namespace Taseera\UserBundle\Tests\Controller;
+namespace Taseera\BackendBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

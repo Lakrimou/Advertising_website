@@ -1,0 +1,275 @@
+{% extends '::front.html.twig' %}
+{% block title %}
+    - بروفيل {{ app.user.username }}
+{% endblock %}
+{% block stylesheet %}
+    <style>
+    .cont {
+    position: relative;
+    width: 50%;
+        margin: auto !important;
+    }
+
+    .image {
+    display: block;
+    width: 100%;
+    height: auto;
+        margin: auto
+    }
+
+    .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #000000;
+    }
+
+    .cont:hover .overlay {
+    opacity: 0.7;
+    }
+
+    .text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    }</style>
+{% endblock %}
+{% block body %}
+    <section class="inner-page-content border-bottom top-pad-50" style=" background-color:#e7e7e7; padding-top:130px">
+        <div class="login-register">
+            <div class="container" >
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8" style="padding: 50px; background-color: white;">
+                        <div class="card">
+                            <div class="card-header">
+                                {% for flashMessage in app.session.flashbag.get('msg') %}
+                                    <br><br>
+                                    <div class='alert alert-success alert-dismissable arabe'>
+                                        <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;
+                                        </button>
+                                        {{ flashMessage }}
+                                    </div>
+
+                                {% endfor %}
+                                <h2 style="font-size: 18px;">{{ 'تعديل بيانات الملف الشخصي'|trans }}</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                        {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+                                        {{ form_errors(edit_form) }}
+                                        <div class="form-group">
+                                            {{ form_label(edit_form.username,"اسم المستخدم",{"label-attr":{"class":"label-control"}}) }}
+                                            {{ form_errors(edit_form.username) }}
+                                            {{ form_widget(edit_form.username, {'attr':{'class':'form-control'}}) }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_label(edit_form.email,"البريد الإلكتروني",{"label-attr":{"class":"label-control"}}) }}
+                                            {{ form_errors(edit_form.email) }}
+                                            {{ form_widget(edit_form.email, {'attr':{'class':'form-control'}}) }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_label(edit_form.phoneNumber,"رقم الجوال",{"label-attr":{"class":"label-control"}}) }}
+                                            {{ form_errors(edit_form.phoneNumber) }}
+                                            {{ form_widget(edit_form.phoneNumber, {'attr':{'class':'form-control'}}) }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_label(edit_form.facebook,"الفايسبوك",{"label-attr":{"class":"label-control"}}) }}
+                                            {{ form_errors(edit_form.facebook) }}
+                                            {{ form_widget(edit_form.facebook, {'attr':{'class':'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            {{ form_label(edit_form.twitter,"التويتر",{"label-attr":{"class":"label-control"}}) }}
+                                            {{ form_errors(edit_form.twitter) }}
+                                            {{ form_widget(edit_form.twitter, {'attr':{'class':'form-control'}}) }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            {{ form_label(edit_form.googlePlus,"غوغل بلاس",{"label-attr":{"class":"label-control"}}) }}
+                                            {{ form_errors(edit_form.googlePlus) }}
+                                            {{ form_widget(edit_form.googlePlus, {'attr':{'class':'form-control'}}) }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_label(edit_form.tCountry,"البلد",{"label-attr":{"class":"label-control"}}) }}
+                                            {{ form_errors(edit_form.tCountry) }}
+                                            {{ form_widget(edit_form.tCountry, {'attr':{'class':'form-control'}}) }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_label(edit_form.tRegion,"المدينة",{"label-attr":{"class":"label-control"}}) }}
+                                            {{ form_errors(edit_form.tRegion) }}
+                                            {{ form_widget(edit_form.tRegion, {'attr':{'class':'form-control'}}) }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_label(edit_form.tCity,"الحي",{"label-attr":{"class":"label-control"}}) }}
+                                            {{ form_errors(edit_form.tCity) }}
+                                            {{ form_widget(edit_form.tCity, {'attr':{'class':'form-control'}}) }}
+                                        </div>
+                                        <input type="submit" value="{{ 'تعديل'|trans }}" class="btn btn-success btn-lg " data-step="عدل"/>
+                                        {{ form_end(edit_form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4">
+                        <div class="card card-user" style="background-color: #ffffff; padding: 50px;">
+                            <td><div class="card-image text-center">
+                                    <div class="cont text-center block-center">
+                                        <a href="#" data-toggle="modal" data-target="#myModale">
+
+                                            {% if app.user.image is not empty %}
+                                                <img style="border: 5px solid gray; border-radius: 8px;" src="{{ asset('backend/img/user/'~app.user.image) }}" class="image doctorPic" alt="{{ app.user.username }}">
+                                            {% else %}
+                                                <img style="border: 5px solid gray; border-radius: 8px;" src="{{ asset('frontend/ivy/img/default-user.png') }}" class="image image-responsive doctorPic" alt="{{ app.user.username }}" width="200" height="auto">
+                                            {% endif %}
+                                            <div class="overlay">
+                                                <div class="text">{{ 'تعديل صورة المستخدم'|trans }}</div>
+                                            </div>
+
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="myModale" role="dialog" style="z-index: 99999999999;">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">{{ 'صورة المستخدم'|trans }}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card-image text-center">
+                                                    {% if app.user.image is not empty %}
+                                                        <img id="doctorPic" style="border: 5px solid gray; border-radius: 8px;" src="{{ asset('backend/img/user/'~app.user.image) }}" alt="{{ app.user.username }}" width="500" height="auto">
+                                                    {% else %}
+                                                        <img id="doctorPic" src="{{ asset('frontend/ivy/img/default-user.png') }}" alt="{{ app.user.username }}" width="500" height="auto">
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                                    {#<button type="button" id="mybutton" class="updatePhotoDoctor btn btn-default arabe">تعديل</button>#}
+                                                    {{ form_start(editPictureFormm, {"attr":{"id":"akrem"}}) }}
+                                                    <div class="form-group">
+                                                        {#Génération du label. #}
+                                                        {{ form_label(editPictureFormm.image, "صورة ", {'label_attr': {'class': 'arabe control-label'}}) }}
+
+                                                        {#Affichage des erreurs pour ce champ précis.#}
+                                                        {{ form_errors(editPictureFormm.image) }}
+                                                        {#Génération de l'input.#}
+                                                        {{ form_widget(editPictureFormm.image, {'attr': {'class': 'arabe'}}) }}
+                                                    </div>
+                                                    {#<div class="form-group">
+                                                         Génération du label.
+                                                        {{ form_label(editPicForm.password, "كلمة المرور", {'label_attr': {'class': 'arabe control-label'}}) }}
+
+                                                         Affichage des erreurs pour ce champ précis.
+                                                        {{ form_errors(editPicForm.passwordDoctor) }}
+                                                         Génération de l'input.
+                                                        {{ form_widget(editPicForm.passwordDoctor, {'attr': {'class': 'arabe'}}) }}
+                                                    </div>#}
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                             role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                                             aria-valuemax="100" style="width: 100%"></div>
+                                                    </div>
+                                                    <input type="submit" value="تعديل"/>
+                                                    {{ form_end(editPictureFormm) }}
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <div class="card-body text-center">
+                                <div class="author">
+                                    <a href="#">
+
+                                        <h5 class="title">{{ app.user.username }}</h5>
+                                    </a>
+                                    <p class="description">
+                                    </p>
+                                </div>
+                                <p class="description text-center">
+                                    <br> {{ 'الإيميل'|trans }} : {{ app.user.email }}
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="button-container mr-auto ml-auto text-center">
+                                <button href="#" class="btn btn-simple btn-link btn-icon">
+                                    <i class="fa fa-facebook-square"></i>
+                                </button>
+                                <button href="#" class="btn btn-simple btn-link btn-icon">
+                                    <i class="fa fa-twitter"></i>
+                                </button>
+                                <button href="#" class="btn btn-simple btn-link btn-icon">
+                                    <i class="fa fa-google-plus-square"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--row-->
+            <!--Reset Password-->
+        </div><!--col-lg-10-->
+        </div><!--row-->
+        </div><!--container-->
+        </div><!--Login-register-->
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script >
+        $(document).ready(function () {
+            $('.progress').hide();
+            $('#akrem').on("submit", function (event) {
+                event.preventDefault();
+                $('.progress').show();
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ path('taseera_edit_user_picture', {'id':user.id}) }}",
+                    data: new FormData($(this)[0]),
+                    dataType: 'json',
+                    processData: false,
+                    cache: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response.photo);
+                        $('#doctorPic').attr('src', '{{ asset('backend/img/user/') }}' + response.photo);
+                        $('.doctorPic').attr('src', '{{ asset('backend/img/user/') }}' + response.photo);
+                        /*alert(response.message);
+                         console.log(response);*/
+                        $('.progress').hide();
+                    },
+                    error: function (response, desc, err) {
+                        if (response.responseJSON && response.responseJSON.message) {
+                            console.log('je suis là error');
+                            alert(response.responseJSON.message);
+                        }
+                        else {
+                            console.log('je suis là else');
+                            alert(desc);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

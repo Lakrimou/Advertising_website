@@ -1,0 +1,182 @@
+{% extends '::front.html.twig' %}
+{% block title %}
+ - {{ 'من نحن'|trans }}
+{% endblock %}
+{% block meta %}
+    <meta name="description" content="تسعيرة هو أول وأكبر موقع قطري للدعاية والإعلان من خلاله يمكنك التعرف على أحدث المنتجات وأخر العروض وأجد الخدمات من منزلك، تسوق وإنت في بيتك">
+{% endblock %}
+{% block body %}
+<section class="inner-page-content border-bottom" style="padding-top: 160px !important;">
+    <div class="container">
+        <!-- breadcrumb -->
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li><a rel="v:url" property="v:title" href="{{ path('taseerafrontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+                    &nbsp;
+                    <li>{{ 'معلومات عن موقعنا'|trans }}</li>
+                </ul>
+            </div>
+        </div>        <!-- breadcrumb -->
+        <div class="row">
+            <div class="col-md-8 col-lg-9">
+                <article class="article-content">
+                    <h4>{{ 'من نحن'|trans }}</h4>
+                    <p><strong>{{ 'تسعيرة'|trans }}</strong>
+                        {{ 'هو  موقع إلكتروني و تطبيق للهواتف الذكية'|trans }} {{ 'يضم العديد من الشركات القطرية'|trans }} {% trans %}لتسهيل عملية البحث للعميل في كل ما يحتاجه من مستلزمات العمل و يقدم خدمة الدعاية و اللإعلان  لجميع المنتجات والأصناف المختلفة  المعروضة للبيع أو المطلوبة للشراء يحتوي علي أنواع مختلفه من الأعلانات ( عقارات , سيارات , شركات , مصانع ,أثاث , حيوانات, أغذية ,  قوارب ......  ){% endtrans %} </p>
+                    <h4>  {{ 'مزايا الموقع للأفراد'|trans }} :</h4>
+                    <p>
+
+                        - {% trans %}يمكن للعميل ايجاد كل ما يحتاجه في شتى مجالات الحياة العصرية بطريقة سهلة و موفرة من حيث المال و الوقت و الجهد المبذول{% endtrans %}  .<br/><br/>
+                        - {% trans %}يعرض لكم الموقع منتجات و خدمات الشركات لتمكين العميل من الوصول إلى كل ما يحتاجه من خدمات والمقارنة بين الشركات و إختيار التسعيرة التي تناسبه{% endtrans %} .<br/>
+                        <br/> - {% trans %}يكون لكل عميل حساب خاص به يستطيع من خلاله زيارة بروفلات الشركات المسجلة بالموقع و التواصل معهم لتلبية احتياجاته{% endtrans %} .
+                        <br/><br/>- {% trans %}يقوم المستخدم بأرسال خطاب يكتب فيه ما يريد و يحتاج من خدمات و تقوم بعد ذلك الشركات المختصة بالرد و التواصل مع العميل أو الشركة عن طريق إرسال عرض سعر لما يريد من خدمات{% endtrans %} .<br/><br/>
+                        - {% trans %}يقوم العميل بالإختيار و المفاضلة بين عروض الأسعار المقدمة له و التواصل مع الشركة التى تناسبه{% endtrans %} .
+                    </p>
+
+
+                    <h4> {{ 'مزايا الموقع للشركات'|trans }} :</h4>
+                    <p>- {% trans %}نقوم بعرض خدمات ومنتجات الشركات بطريقة مبسطة للعملاء ونسهل عملية التواصل بين العميل والشركات{% endtrans %} .<br/><br/>
+                        - {% trans %}يكون لكل شركة حساب خاص بها تستطيع من خلاله تعديل ما يخص الشركة من إضافة وإزالة و متابعة منتجات وخدمات ووضع العروض و التواصل من خلاله مع العملاء دون الرجوع لإدارة الموقع{% endtrans %} .<br/>
+                        <br/>   - {% trans %}نقوم بربط الشركات ببعضها لفتح باب التعاون  فيما بينها{% endtrans %} .<br/><br/>
+                        - {% trans %}نسهل على المستثمرين ورجال الأعمال عمل دراسة جدوى للمشاريع الإطلاع و متابعة السوق و الشركات من خلالنا{% endtrans %} . <br/><br/>
+                        - {% trans %}نقوم بعمل الدعاية للشركات على شبكات التواصل الإجتماعي ( الفيسبوك , التويتر , الأنستغرام... ){% endtrans %} .<br/><br/>
+                        - {% trans %}نوفر أيضا على الشركات عدد مناديب المبيعات و المشتريات لما نوفره لها من اطلاعة كاملة على السوق القطري{% endtrans %}. <br/><br/>
+                        - {% trans %}نعرض المناقصات و المزايدات الخاصة بوزارات و مِؤسسات الدولة{% endtrans %} .
+                    </p>
+                </article>
+                <!--comments-->
+                <div class="hidden">
+                </div>
+                <!--comments-->
+            </div><!--col-md-8 col-lg-9-->
+            <div class="col-md-4 col-lg-3">
+                    <aside class="sidebar">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-6 match-height annonce-left">
+                                <div class="widget-box">
+                                    <div class="widget-title text-center"><h4>{{ 'الإعلانات المميزة'|trans }}</h4></div>
+                                    <div class="widget-content">
+                                        <div class="media footer-pr-widget-v1">
+                                            <div class="media-left">
+                                                <a class="media-img"
+                                                   href="#">
+                                                    <img class="media-object" src="{{ asset('frontend/ivy/img/logoo.jpg') }}"
+                                                         alt="tasseera">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <!--	<span class="price">
+                                                        $15											</span> -->
+                                                <h4 class="media-heading">
+                                                    <a href="#">{{ 'تسعيرة'|trans }}</a>
+                                                </h4>
+										<span class="category">
+						 {{ 'الفئة'|trans }}:
+						<a href="#">{{ 'شركات الدعاية والإعلان'|trans }}</a>
+					</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-6 match-height">
+                                <div class="widget-box">
+                                    <div class="widget-title"><h4>{{ 'أحدث الإعلانات'|trans }}</h4></div>
+                                    <div class="widget-content">
+                                        <div class="media footer-pr-widget-v1">
+                                            <div class="media-left">
+                                                <a class="media-img"
+                                                   href="#">
+                                                    <img class="media-object" src="{{ asset('frontend/ivy/img/logoo.jpg') }}"
+                                                         alt="tasseera">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <!--	<span class="price">
+                                                        QR5515											</span> -->
+                                                <h4 class="media-heading">
+                                                    <a href="#">{{ 'تسعيرة'|trans }}</a>
+                                                </h4>
+										<span class="category">
+						{{ 'الفئة'|trans }}:
+						<a href="#">{{ 'شركات الدعاية والإعلان'|trans }}</a>
+					</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-6 match-height">
+                                <div class="widget-box">
+                                    <div class="widget-title"><h4>{{ 'الاشتراك والمتابعة'|trans }}</h4></div>
+
+                                    <div class="widget-content">
+                                        <div class="social-network">
+                                            <a class="social-icon social-icon-sm footer-social" href="https://www.facebook.com/Tasseera-218512675372085/" target="_blank"><i
+                                                        class="fa fa-facebook"></i></a>
+                                            <a class="social-icon social-icon-sm footer-social" href="https://twitter.com/Tasseera_qtr" target="_blank"><i
+                                                        class="fa fa-twitter"></i></a>
+                                            <a class="social-icon social-icon-sm footer-social" href="https://www.pinterest.fr/tasseera/" target="_blank"><i
+                                                        class="fa fa-pinterest"></i></a>
+
+                                            <a class="social-icon social-icon-sm footer-social" href="https://plus.google.com/u/0/101411620271692572318" target="_blank"><i
+                                                        class="fa fa-google-plus"></i></a> <a
+                                                    class="social-icon social-icon-sm footer-social" href="https://www.youtube.com/channel/UCGXLaW9n8Eqn2WCYeEiqT9A" target="_blank"><i
+                                                        class="fa fa-youtube-play"></i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div><!--col-md-4 col-lg-3-->
+        </div><!--row-->
+    </div>
+</section>
+<!--PageContent-->
+<!-- Company Section Start-->
+<section class="partners-v3 section-gray-bg">
+    <div class="container container-1">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="owl-carousel partner-carousel-v3 partner-carousel-v4" data-car-length="6" data-items="6"
+                     data-loop="true" data-nav="false" data-autoplay="true" data-autoplay-timeout="2000"
+                     data-dots="false" data-auto-width="false" data-auto-height="true" data-right="false"
+                     data-responsive-small="2" data-autoplay-hover="true" data-responsive-medium="4"
+                     data-responsive-xlarge="6" data-margin="30">
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/01.png" alt="partner"></a>
+                    </div>
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/02.png" alt="partner"></a>
+                    </div>
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/03.png" alt="partner"></a>
+                    </div>
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/04.png" alt="partner"></a>
+                    </div>
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/05.png" alt="partner"></a>
+                    </div>
+                    <div class="item partner-img match-height">
+                        <span class="helper"></span>
+                        <a href="#" target="_blank"><img src="wp-content/uploads/2017/06/06.png" alt="partner"></a>
+                    </div>
+                </div>
+            </div><!--col-lg-12-->
+        </div><!--row-->
+    </div><!--container-->
+    {% endblock %}
+    {% block stylesheet %}
+<link rel="stylesheet" href="{{ asset('frontend/ivy/css/about-us') }}">
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends "::layout_company.html.twig" %}
+{% block title %}
+   ملف الشركة
+{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('company/assets/css/introjs.css') }}">
+    <link rel="stylesheet" href="{{ asset('company/assets/css/introjs-rtl.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="content">
+    <div class="card ">
+    <div class="card-header ">
+        <h4 class="card-title" style="text-align: center">ملف الشركة</h4>
+
+    </div>
+        <div class="card-body ">
+            <div class="container">
+                <div class="row">
+                    {#<table class="table table-responsive table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Country</th>
+                                <th>Region</th>
+                                <th>Number of ads</th>
+                            </tr>
+                            <tr>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.tCountry }}</td>
+                                <td>{{ user.tRegion }}</td>
+                                <td>{{ itemsNumber }}</td>
+                            </tr>
+                        </tbody>
+                    </table>#}
+                    {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+                            {{ form_errors(edit_form) }}
+                    {#{{ form_widget(edit_form) }}#}
+                    {#<div class="form-group">
+                    {{ form_label(edit_form.image,"صورة الشركة",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.image) }}
+                    {% if user.image is not defined %}
+                        {{ form_widget(edit_form.image, {'attr':{'class':'', 'data-intro':'أختر صورة '}}) }}
+                    {% else %}
+                        {{ form_widget(edit_form.image, {'attr':{'class':''}}) }}
+                    {% endif %}
+                    </div>#}
+                    <div class="form-group">
+                    {{ form_label(edit_form.image,"صورة الشركة",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.image) }}
+                    {{ form_widget(edit_form.image, {'attr':{'class':'', 'data-intro':'أختر صورة '}}) }}
+                    {#{% if user.image is not defined %}
+                        {{ form_widget(edit_form.image, {'attr':{'class':'', 'data-intro':'أختر صورة '}}) }}
+                    {% else %}
+                        {{ form_widget(edit_form.image, {'attr':{'class':''}}) }}
+                    {% endif %}#}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.username,"اسم الشركة",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.username) }}
+                    {{ form_widget(edit_form.username, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.email,"البريد الالكتروني",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.email) }}
+                    {{ form_widget(edit_form.email, {'attr':{'class':'form-control'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                    {{ form_label(edit_form.description,"نبذة عن الشركة",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.description) }}
+                    {{ form_widget(edit_form.description, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.phoneNumber,"رقم الجوال",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.phoneNumber) }}
+                    {{ form_widget(edit_form.phoneNumber, {'attr':{'class':'form-control'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                    {{ form_label(edit_form.categories,"قسم",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.categories) }}
+                    {{ form_widget(edit_form.categories, {'attr':{'class':'form-control', 'data-intro':'أختر قسم ', 'style':'height:100px;'}}) }}
+
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.tCountry,"البلد",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.tCountry) }}
+                    {{ form_widget(edit_form.tCountry, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.tRegion,"المدينة",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.tRegion) }}
+                    {{ form_widget(edit_form.tRegion, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.tCity,"الحي",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.tCity) }}
+                    {{ form_widget(edit_form.tCity, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                    {{ form_label(edit_form.tCityArea,"الشارع",{"label-attr":{"class":"label-control"}}) }}
+                    {{ form_errors(edit_form.tCityArea) }}
+                    {{ form_widget(edit_form.tCityArea, {'attr':{'class':'form-control'}}) }}
+                    </div>
+</div>
+                    <input type="submit" value="تعديل الشركة" class="btn btn-success btn-lg " data-step="عدل"/>
+                    {{ form_end(edit_form) }}
+                    {#<div class="text-right row">
+                        <div class="col-lg-12" style="display: inline-block">
+                            {{ form_start(delete_form) }}
+                            <input type="submit" value="حذف الشركة" class="btn btn-danger btn-lg">
+                            {{ form_end(delete_form) }}
+                </div>
+            </div>#}
+        </div>
+    </div>
+    </div>
+
+
+        {% endblock %}
+
+        {% block javascripts %}
+        <script src="{{ asset('company/assets/js/intro.js') }}"></script>
+        <script >
+        introJs().start();
+</script>
+        {% endblock %}

@@ -1,0 +1,4 @@
+services:
+#    taseera_backend.example:
+#        class: Taseera\BackendBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

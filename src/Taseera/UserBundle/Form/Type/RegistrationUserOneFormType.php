@@ -5,6 +5,7 @@ namespace Taseera\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RegistrationUserOneFormType extends AbstractType
 {
@@ -22,6 +23,12 @@ class RegistrationUserOneFormType extends AbstractType
         return 'app_user_registration';
     }
 
+    /*public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'csrf_protection' => false,
+        ));
+    }*/
     // For Symfony 2.x
     public function getName()
     {

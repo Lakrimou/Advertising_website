@@ -1,36 +1,101 @@
-{% extends 'base.html.twig' %}
+{% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Category</h1>
+    <div class="layout-content">
+        <div class="layout-content-body">
+            <div class="title-bar">
+                <h1 class="title-bar-title">
+                    <span class="d-ib">المعلومات التي تخص قسم {{ category.nameCategory }} </span>
+              <span class="d-ib">
+                <a class="title-bar-shortcut" href="#" title="Add to shortcut list" data-container="body"
+                   data-toggle-text="Remove from shortcut list" data-trigger="hover" data-placement="right"
+                   data-toggle="tooltip">
+                  <span class="sr-only">Add to shortcut list</span>
+                </a>
+              </span>
+                </h1>
+            </div>
+            <div class="row gutter-xs">
+                <div class="col-xs-12">
+                    <div class="col-md-8">
+                        <div class="demo-form-wrapper">
+                            <table class="table table-responsive table-bordered table-striped">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ category.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>القسم</th>
+                                    <td>{{ category.nameCategory }}</td>
+                                </tr>
+                                <tr>
+                                    <th>وصف القسم</th>
+                                    <td>{{ category.description }}</td>
+                                </tr>
+                                {% if category.image is defined %}
+                                    <tr>
+                                        <th>الصورة</th>
+                                        <td>
+                                            <a href="#" id="show-{{ category.id }}" data-toggle="modal"
+                                               data-target="#show-modal-{{ category.id }}">
+                                            <img src="{{ asset('backend/img/category/'~category.image) }}" width="200" height="auto" alt="category {{ category.nameCategory }}">
+                                            </a>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Namecategory</th>
-                <td>{{ category.nameCategory }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ category.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                            <div class="text-center" style="display: flex; justify-content: space-between">
 
-    <ul>
-        <li>
-            <a href="{{ path('category_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('category_edit', { 'id': category.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+                                <a href="{{ path('category_edit', { 'id': category.id }) }}"
+                                   class="btn btn-success btn-lg">تعديل</a>
+
+                                {{ form_start(delete_form) }}
+                                <input type="submit" class="btn btn-danger btn-lg" value="حذف القسم">
+                                {{ form_end(delete_form) }}
+                                <a href="{{ path('category_index') }}" class="btn btn-primary btn-lg">الرجوع الى قائمة
+                                    الأقسام <i class="icon icon-hand-o-left"></i> </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="show-modal-{{ category.id }}" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title arabe" id="myModalLabel"> اظهار
+                        الصورة</h4>
+                </div>
+
+                <div class="modal-body">
+                    <center>
+                        <img src="{{ asset('backend/img/category/'~category.image) }}" width="500" height="auto" alt="category {{ category.nameCategory }}">
+                    </center>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default arabe"
+                            data-dismiss="modal"> رجوع
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
+

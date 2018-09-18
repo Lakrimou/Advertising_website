@@ -1,0 +1,575 @@
+{% extends "::front.html.twig" %}
+{% block title %}
+    - {{ 'أكبر موقع للدعاية والإعلان في قطر'|trans }}
+{% endblock %}
+{% block styleheet %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+{% block meta %}
+    <meta charset="UTF-8">
+    <meta name="description" content={{ 'تسعيرة هو أكبر موقع للدعاية والاعلان في قطر يمكن المستخدم من الإطلاع على خدمات ومنتجات الشركات بحيث يمكنك من التواصل معهم للإستفسار على الأسعار والعروض المقترحة  على المنتجات'|trans }}>
+    <meta name="keywords" content="دعاية ,اعلان, marketing, Advert">
+    <meta name="author" content="تسعيرة" />
+    <meta name="robots" content="index, follow, archive" />
+    <meta name="p:domain_verify" content="3fc0af2d917ca5021a49e94cd36fae69"/>
+{% endblock %}
+{% block body %}
+
+    <h1 class="principle-title">تسعيرة</h1>
+    <div id="myCarousel" class="carousel slide pad-carousel" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="{{ asset('frontend/ivy/img/banner_corniche.jpg') }}" alt="tasseera" class="size-width" >
+                <div class="carousel-caption">
+                    <div class="classiera-simple-bg-slider-content text-center">
+                        <img src="{{ asset('frontend/ivy/img/App_Store.png') }}" class="titre-slider store-play" alt="App Store">
+                        <img src="{{ asset('frontend/ivy/img/Google_Play.png') }}" class="titre-slider store-play" alt="Google PLay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="item ">
+                <img src="{{ asset('frontend/ivy/img/banner2.jpg') }}" alt="tasseera" class="size-width">
+                <div class="carousel-caption">
+                    <div class="classiera-simple-bg-slider-content text-center">
+                        <img src="{{ asset('frontend/ivy/img/App_Store.png') }}" class="titre-slider store-play" alt="App Store">
+                        <img src="{{ asset('frontend/ivy/img/Google_Play.png') }}" class="titre-slider store-play" alt="App Store">
+                    </div>
+                </div>
+            </div>
+            <div class="item ">
+                <img src="{{ asset('frontend/ivy/img/banner3.jpg') }}" alt="tasseera" class="size-width">
+                <div class="carousel-caption">
+                    <div class="classiera-simple-bg-slider-content text-center">
+                        <img src="{{ asset('frontend/ivy/img/App_Store.png') }}" class="titre-slider store-play" alt="App Store">
+                        <img src="{{ asset('frontend/ivy/img/Google_Play.png') }}" class="titre-slider store-play" alt="App Store">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div id="modal_authentification" class="modal fade" role="dialog" style="z-index: 99999999999; position: fixed;
+   top: 150px;">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style=" background-color: #912a5d; !important;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center" style="color: #ffffff;"> {{ 'التسجيل'|trans }} </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6 text-center">
+                                <div style="border: 2px solid #912a5d; border-radius: 8px;">
+                                    <span class="btn btn-lg"> <i class="fa fas fa-building"></i> {{ 'الشركات'|trans }}</span>
+                                    <div class="row">
+                                        <img src="{{ asset('frontend/ivy/img/useres_auth.png') }}" alt="companies">
+                                        <div style="padding: 15px;">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-bottom: 15px;">
+                                                <a href="{{ path('user_one_registration') }}" class="btn btn-primary" style="padding: 8px;">{{ 'تسجيل'|trans }} </a>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-bottom: 15px;">
+                                                <a href="{{ path('company_login') }}" class="btn btn-primary" style="padding: 8px;"> {{ 'دخول'|trans }} </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 text-center">
+                                <div style="border: 2px solid #912a5d; border-radius: 8px;">
+                                    <span class="btn btn-lg"> <i class="fa fas fa-users"></i> {{ 'المستخدمين'|trans }}</span>
+                                    <div class="row">
+                                        <img src="{{ asset('frontend/ivy/img/building_auth.png') }}" alt="users">
+                                        <div style="padding: 15px;">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-bottom: 15px;">
+                                                <a href="{{ path('user_two_registration') }}" class="btn btn-primary" style="padding: 8px;">{{ 'تسجيل'|trans }} </a>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-bottom: 15px;">
+                                                <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary" style="padding: 8px;">{{ 'دخول'|trans }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style=" background-color: #912a5d; !important;">
+                        <button type="button" class="btn btn-default" style="padding: 8px;" data-dismiss="modal">{{ 'رجوع'|trans }}</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+    <section class="search-section search-section-v5 bloc-recherche">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form data-toggle="validator" role="form" class="search-form search-form-v5 form-inline"
+                          action="{{ url('taseerafrontend_search') }}" method="post">
+                        <!--Select Category-->
+                        <div class="form-group clearfix">
+                            <div class="input-group side-by-side-input right-addon pull-left flip">
+                                <select class="form-control form-control-sm" name="category_name" id="ajaxSelectCat">
+                                    <option value="-1" selected disabled>{{ 'كل الأقسام'|trans }}</option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.nameCategory|trans }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="side-by-side-input pull-left flip classieraAjaxInput">
+                                <input type="text" name="word" id="classieraSearchAJax"
+                                       class="form-control form-control-sm"
+                                       placeholder={{ "أدخل كلمة"|trans }} data-error="يرجي كتابة كلمة...!">
+                                <div class="help-block with-errors"></div>
+                                <div class="classieraAjaxResult"></div>
+                            </div>
+                        </div>
+                        <!--Select Category-->
+                        <!--Locations-->
+                        <div class="form-group">
+                            <div class="input-group inner-addon right-addon input-recherche">
+                                <div class="input-group-addon input-group-addon-width-sm input-recherche"><i
+                                            class="fa fa-map-marker"></i>
+                                </div>
+                                <div class="ui-widget">
+                                    <input type="text" id="getCity" name="place"
+                                           class="form-control form-control-sm input-recherche"
+                                           placeholder={{ "العنوان أو الموقع"|trans }}>
+                                    <a id="getLocation" onclick="getLocation()" class="form-icon form-icon-size-small input-recherche"
+                                       title="Click here to get your own location">
+                                        <i class="fa fa-crosshairs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Locations-->
+                        <!--PriceRange-->
+                        <div class="form-group clearfix">
+
+                        </div>
+
+                        <!--PriceRange-->
+                        <div class="form-group">
+                            <input class="radius btn-lg" type="submit" name="search" value={{ "البحث"|trans }}>
+                        </div>
+                    </form>
+                </div><!--col-md-12-->
+            </div><!--row-->
+        </div><!--container-->
+    </section>
+    <section id="classieraDv">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 center-block text-center">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="classiera-advertisement advertisement-v5 section-pad-80 border-bottom section-annonce">
+        <div class="section-heading-v5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 center-block">
+                        <h2 class="text-capitalize text-center nebdha"> {{ 'التصنيفات'|trans }}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-divs">
+            <!--view-head-->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="all">
+                    <div class="container">
+                        <div class="row">
+                            {% for category in categories %}
+                                <div class="col-lg-3 col-md-3 col-sm-6 match-height item item-masonry">
+                                    <a href="{{ path('taseerafrontend_sub_category', {'id':category.id}) }}" title="{{ category.nameCategory }}">
+                                        <div class="classiera-box-div classiera-box-div-v5">
+                                            <figure class="clearfix">
+                                                <div class="widget-title" name="woroche">
+                                                    <h4 class="woroch text-center">{{ category.nameCategory|trans }}</h4>
+                                                </div>
+                                                <div class="premium-img">
+
+                                                    {% if category.image is defined %}
+                                                        <a href="{{ path('taseerafrontend_sub_category', {'id':category.id}) }}" title="{{ category.nameCategory|trans }}">
+                                                            <img class="img-responsive" src="{{ asset('backend/img/category/'~category.image) }}" alt="{{ category.nameCategory|trans }}" title="{{ category.nameCategory|trans }}">
+                                                        </a>
+                                                    {% else %}
+                                                        <img src="img-responsive" src="{{ asset('frontend/ivy/logo.png') }}" alt="{{ category.nameCategory|trans }}">
+                                                    {% endif %}
+
+                                                    <a href="{{ path('taseerafrontend_sub_category', {'id':category.id}) }}" title="{{ category.nameCategory|trans }}">
+                                                    <span class="hover-posts hovv">
+															{{ category.nameCategory|trans }}
+                                                    </span></a>
+
+
+                                                </div><!--premium-img-->
+                                                <!--detail text-center-->
+
+                                            </figure>
+                                        </div></a><!--row-->
+                                </div>
+                            {% endfor %}
+                        </div><!--row-->
+                    </div><!--container-->
+                </div><!--tabpanel-->
+            </div><!--tabpanel Random-->
+            <!--tabpanel popular-->
+
+        </div><!--tab-content-->
+        </div><!--tab-divs-->
+    </section>
+
+    <section id="services" class="section-pad category-v1 border-bottom">
+        <div class="section-heading-v1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 center-block">
+                        <h2 class="text-uppercase text-center">الخدمات</h2>
+                        <p>يقدم موقع تسعيرة العديد من الخدمات من بينها</p>
+                    </div><!--col-lg-8-->
+                </div><!--row-->
+            </div><!--container-->
+        </div><!--section-heading-v1-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 match-height">
+                    <div class="category-box border">
+                        <div class="category-heading border-bottom">
+                            <h3 class="titre-service">تصميم المواقع الإلكترونية</h3>
+                            <br>
+                            <span class="category-icon-box services-categ">
+																	<i class="fa fa-desktop"></i>
+																	<span class="category-icon-box-border icon-border-categ-serv"></span>
+								</span>
+                        </div><!--category-heading-->
+                        <div class="category-content">
+                            <ul>
+                                <li><span><i class="fa fa-photo"></i> &nbsp;
+
+																								</span>
+
+                                    تصميم المواقع الإعلانية
+
+                                </li>
+                                <li><span>
+																							 	<i class="fa fa-shopping-cart"></i> &nbsp;
+																								</span>
+
+                                    تصميم المواقع التجارية
+
+                                </li>
+                                <li><span>
+                                            <i class="fa fa-newspaper-o"></i> &nbsp;
+																								</span>
+
+                                    تصميم المواقع الإخبارية
+
+                                </li>
+                            </ul>
+                            {#<div class="view-button">
+                                 <a href="https://demo.joinwebs.com/classiera/lime/category/electronics/" class="btn btn-primary sharp btn-style-one btn-sm">
+                                     VIEW ALL																				<i class="fa fa-chevron-right icon-right"></i>
+                                 </a>
+                             </div>#}<!--view-button-->
+                        </div><!--category-content-->
+                    </div><!--category-box-->
+                </div><!--col-lg-4-->
+                <div class="col-lg-4 col-md-4 col-sm-6 match-height">
+                    <div class="category-box border">
+                        <div class="category-heading border-bottom">
+                            <h3 class="titre-service">التسويق الإلكتروني</h3>
+                            <br>
+                            <span class="category-icon-box service-categg">
+																	<i class="fa fa-line-chart"></i>
+																	<span class="category-icon-box-border icon-border-categ-serv"></span>
+								</span>
+                        </div><!--category-heading-->
+                        <div class="category-content">
+                            <ul>
+                                <li><span>
+																								<i class="fa fa-bar-chart"></i> &nbsp;
+																								</span>
+
+                                    SEO
+
+                                </li>
+                                <li>
+                                    <span>
+																								<i class="fa fa-envelope-open"></i> &nbsp;
+																								</span>
+                                    Emailing
+
+                                </li>
+                                <li><span>
+																								<i class="fa fa-share-alt"></i> &nbsp;
+																								</span>
+
+                                    شبكات التواصل الإجتماعي
+
+                                </li>
+                            </ul>
+                            {#<div class="view-button">
+                                <a href="https://demo.joinwebs.com/classiera/lime/category/automotive/" class="btn btn-primary sharp btn-style-one btn-sm">
+                                    VIEW ALL																				<i class="fa fa-chevron-right icon-right"></i>
+                                </a>
+                            </div>#}<!--view-button-->
+                        </div><!--category-content-->
+                    </div><!--category-box-->
+                </div><!--col-lg-4-->
+                <div class="col-lg-4 col-md-4 col-sm-6 match-height">
+                    <div class="category-box border">
+                        <div class="category-heading border-bottom">
+                            <h3 class="titre-service">إنشاء تطبيقات الجوال</h3><br>
+                            <span class="category-icon-box service-categgg">
+																	<i class="fa fa-mobile-phone"></i>
+																	<span class="category-icon-box-border icon-border-categ-serv"></span>
+								</span>
+                        </div><!--category-heading-->
+                        <div class="category-content">
+                            <ul>
+                                <li><span>
+																								<i class="fa fa-android"></i> &nbsp;
+																								</span>
+
+                                    تطبيقات الإندرويد
+
+                                </li>
+                                <li><span>
+																								<i class="fa fa-apple"></i> &nbsp;
+																								</span>
+
+                                    تطبيقات iOS
+
+                                </li>
+                                <li><span>
+																								<i class="fa fa-windows"></i> &nbsp;
+																								</span>
+
+                                    تطبيقات windows phones
+
+                                </li>
+                            </ul>
+                            {#<div class="view-button">
+                                <a href="https://demo.joinwebs.com/classiera/lime/category/jobs/" class="btn btn-primary sharp btn-style-one btn-sm">
+                                    VIEW ALL																				<i class="fa fa-chevron-right icon-right"></i>
+                                </a>
+                            </div>#}<!--view-button-->
+                        </div><!--category-content-->
+                    </div><!--category-box-->
+                </div><!--col-lg-4-->
+
+                <!--ViewAllButton-->
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="view-all text-center">
+                        <a href="" class="btn btn-primary sharp btn-sm btn-style-one">
+
+                            للتواصل و الإستفسار											</a>
+                    </div>
+                </div>
+                <!--ViewAllButton-->
+            </div><!--row-->
+        </div><!--container-->
+    </section>
+
+
+
+
+    <section class="call-to-action third-section" >
+        <div class="container">
+            <h2 class="nebdha">{{ "نبذة عن موقع تسعيرة"|trans }}</h2>
+            <div class="row gutter-15">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="call-to-action-box match-height">
+                        <div class="action-box-heading">
+                            <div class="heading-content">
+                                <img src="{{ asset('frontend/ivy/wp-content/uploads/2017/06/user-icon.png') }}" alt="About Us">
+                            </div>
+                            <div class="heading-content">
+                                <h3>&nbsp;{{ 'من نحن'|trans }} </h3>
+                            </div>
+                        </div>
+                        <div class="action-box-content justifier">
+                            <p>{% trans %}
+                                تسعيرة (Tasseera) هي شركة رائدة في الدعاية والاعلان وهي بوابتك للاطلاع على السوق القطري يمكنك الموقع والتطبيق الخاص بها من الاطلاع على خدمات ومنتجات الشركات. الاطلاع على اخر الموديلات و الأسعار في السوق بطريقة مبسطة ومنظمة ويسهل عليك عملية التواصل ومراسلة كافة الشركات في آن واحد لتوفير المال و الوقت والجهد المبذول في إيجاد كل ما تحتاجه من مستلزماتك اليومية والمهنية.
+                                {% endtrans %}</p>
+                        </div>
+                    </div>
+                </div><!--End About Section-->
+                {#<div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="call-to-action-box match-height">
+                        <div class="action-box-heading">
+                            <div class="heading-content">
+                                <img src="{{ asset('frontend/ivy/wp-content/uploads/2017/06/sell-icon.png') }}" alt="Sell Safely">
+                            </div>
+                            <div class="heading-content">
+                                <h3>&nbsp; بيع بأمان</h3>
+                            </div>
+                        </div>
+                        <div class="action-box-content justifier">
+                            <p>- نقوم بعرض خدمات و منتجات الشركات بطريقة مبسطة للعملاء و نسهل عملية التواصل بين العميل و الشركات . - يكون لكل شركة حساب خاص بها تستطيع من خلاله تعديل ما يخص الشركة من إضافة وإزالة و متابعة منتجات وخدمات ووضع العروض و التواصل من خلاله مع العملاء دون الرجوع للإدارة الموقع . - نقوم بربط الشركات ببعضها لفتح باب التعاون فيما بينها . - نوفر أيضا علي الشركات عدد مناديب المبيعات و المشتريات لما نوفره لها من اطلاعة كاملة علي السوق القطري
+                                <br></p>
+                        </div>
+                    </div>
+                </div>#}<!--End Sell Safely Section-->
+                {#<div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="call-to-action-box match-height">
+                        <div class="action-box-heading">
+                            <div class="heading-content">
+                                <img src="{{ asset('frontend/ivy/wp-content/uploads/2017/06/buy-icon.png') }}" alt="Buy Safely">
+                            </div>
+                            <div class="heading-content">
+                                <h3>&nbsp; شراء بأمان</h3>
+                            </div>
+                        </div>
+                        <div class="action-box-content">
+                            <p>
+                                - يمكن للعميل ايجاد كل ما يحتاجه في شتى مجالات الحياة العصرية بطريقة سهلة و موفرة من حيث المال و الوقت و الجهد المبذول . - يعرض لكم منتجات و خدمات الشركات من خلال موقعنا الإلكتروني و تطبيق علي الهاتف الذكى للوصول إلى كل ما يحتاجه من خدمات التى يوفروها الشركات و المقارنة بين الشركات و إختيار مايناسبك من العروض المقدمة لك . - يكون لكل عميل حساب خاص به يستطيع من خلاله زيارة بروفلات الشركات المسجلة بالموقع و التواصل معهم لتلبية احتياجاته
+                            </p>
+                        </div>
+                    </div>
+                </div>#}<!--End Buy Safely Section-->
+            </div><!--row gutter-15-->
+        </div><!--container-->
+    </section>
+
+
+
+
+
+
+
+    <section class="partners-v3 section-gray-bg">
+        <div class="container section-carousel">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="owl-carousel partner-carousel-v3 partner-carousel-v4" data-car-length="6" data-items="6"
+                         data-loop="true" data-nav="false" data-autoplay="true" data-autoplay-timeout="2000"
+                         data-dots="false" data-auto-width="false" data-auto-height="true" data-right="false"
+                         data-responsive-small="2" data-autoplay-hover="true" data-responsive-medium="4"
+                         data-responsive-xlarge="6" data-margin="30">
+                        <div class="item partner-img match-height">
+                            <span class="helper"></span>
+                            <a href="#" target="_blank"><img src="{{ asset('frontend/ivy/wp-content/uploads/2017/06/01.png') }}" alt="partner"></a>
+                        </div>
+                        <div class="item partner-img match-height">
+                            <span class="helper"></span>
+                            <a href="#" target="_blank"><img src="{{ asset('frontend/ivy/wp-content/uploads/2017/06/02.png') }}" alt="partner"></a>
+                        </div>
+                        <div class="item partner-img match-height">
+                            <span class="helper"></span>
+                            <a href="#" target="_blank"><img src="{{ asset('frontend/ivy/wp-content/uploads/2017/06/03.png') }}" alt="partner"></a>
+                        </div>
+                        <div class="item partner-img match-height">
+                            <span class="helper"></span>
+                            <a href="#" target="_blank"><img src="{{ asset('frontend/ivy/wp-content/uploads/2017/06/04.png') }}" alt="partner"></a>
+                        </div>
+                        <div class="item partner-img match-height">
+                            <span class="helper"></span>
+                            <a href="#" target="_blank"><img src="{{ asset('frontend/ivy/wp-content/uploads/2017/06/05.png') }}" alt="partner"></a>
+                        </div>
+                        <div class="item partner-img match-height">
+                            <span class="helper"></span>
+                            <a href="#" target="_blank"><img src="{{ asset('frontend/ivy/wp-content/uploads/2017/06/06.png') }}" alt="partner"></a>
+                        </div>
+                    </div>
+                </div><!--col-lg-12-->
+            </div><!--row-->
+        </div><!--container-->
+    </section>
+
+
+
+
+
+
+
+    <!-- Modal -->
+
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATKPBSrILzEoU88dp8eQ-EI1XsbONGgw4"
+            async defer></script>
+
+
+
+    <script type="text/javascript">
+
+        var x = document.getElementById("getLocation");
+        var posit_long;
+        var posit_lat;
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+
+            }
+            else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+            alert(position.coords.latitude);
+            posit_long = position.coords.longitude;
+            posit_lat = position.coords.longitude;
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+            jQuery.getJSON('http://ws.geonames.org/countryCode', {
+                lat: posit_lat,
+                lng: posit_long,
+                type: 'JSON'
+            }, function (result) {
+                alert(result.countryName);
+            });
+        }
+
+    </script>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {#<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>#}
+    {#<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>#}
+    {#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>#}
+    <script>
+        jQuery( function() {
+            var availableTags = [];
+            {% for region in regions %}
+            availableTags.push('{{ region }}');
+            {% endfor %}
+            jQuery("#getCity").autocomplete({
+                source: availableTags,
+                position: { my : "right top", at: "right bottom" }
+            });
+        } );
+    </script>
+    <script>
+        jQuery(window).load(function() {
+            jQuery('#modal_authentification').modal('show');
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends '::layout_company.html.twig' %}
+{% block title %}
+    الرسائل
+{% endblock %}
+{% block body %}
+    <div class="content">
+        <div class="card ">
+            <div class="card-header ">
+                <h4 class="card-title" style="text-align: center">الرسائل</h4>
+
+
+            </div>
+            <div class="card-body ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+            <table class="table table-responsive table-bordered table-striped table-hover">
+                <tr>
+                    <th>المستخدمين </th>
+                    <th>الرسائل </th>
+                    <th>الموضوع</th>
+                </tr>
+                {% if messages is not empty %}
+                    {% for message in messages %}
+                        <tr>
+                            <td>{{ message.userTwo.username }}</td>
+                            <td>{{ message.message }}</td>
+                            <td>{{ message.subject }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <strong>
+                                لا توجد رسائل
+                            </strong>
+                        </td>
+                    </tr>
+                {% endif %}
+
+                    </table>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

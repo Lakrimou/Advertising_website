@@ -1,27 +1,48 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
-    <h1>Items list</h1>
+<div class="layout-content">
+    <div class="layout-content-body">
+        <div class="text-center m-b">
+            <h3 class="m-b-0">الاعلانات</h3>
+            <small>جميع الاعلانات</small>
+        </div>
+        <div class="row gutter-xs">
+            <div class="col-xs-12">
+                <div class="card">
+                    {% for flashMessage in app.session.flashbag.get('msg') %}
+                        <br><br>
+                        <div class='alert alert-success alert-dismissable arabe'>
+                            <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;
+                            </button>
+                            {{ flashMessage }}
+                        </div>
 
-    <table>
+                    {% endfor %}
+                    <div class="card-header">
+                        <div class="card-actions">
+                            <button type="button" class="card-action card-toggler" title="Collapse"></button>
+                            <button type="button" class="card-action card-reload" title="Reload"></button>
+                            <button type="button" class="card-action card-remove" title="Remove"></button>
+                        </div>
+                        <strong>قائمة الاعلانات</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="demo-datatables-responsive-2"
+                               class="table table-bordered table-striped table-nowrap dataTable" cellspacing="0"
+                               width="100%">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nameitem</th>
-                <th>Description</th>
-                <th>Datepub</th>
-                <th>Dateupdate</th>
-                <th>Dateexpiration</th>
-                <th>Bspam</th>
-                <th>Bactive</th>
-                <th>Benabled</th>
-                <th>Sip</th>
-                <th>Bshowemail</th>
-                <th>Bpremium</th>
-                <th>Price</th>
-                <th>Contactname</th>
-                <th>Contactemail</th>
-                <th>Actions</th>
+                <th>اسم الاعلان</th>
+                <th>تاريخ اضافة الاعلان</th>
+
+                <th>برميم</th>
+                <th>السعر</th>
+                <th>صاحب الاعلان</th>
+                <th>الايميل</th>
+                <th class="text-center">عرض المعلومات</th>
+                <th class="text-center">تعديل</th>
+                <th class="text-center">حذف</th>
             </tr>
         </thead>
         <tbody>
@@ -29,37 +50,67 @@
             <tr>
                 <td><a href="{{ path('item_show', { 'id': item.id }) }}">{{ item.id }}</a></td>
                 <td>{{ item.nameItem }}</td>
-                <td>{{ item.description }}</td>
                 <td>{% if item.datePub %}{{ item.datePub|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if item.dateUpdate %}{{ item.dateUpdate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if item.dateExpiration %}{{ item.dateExpiration|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if item.bSpam %}Yes{% else %}No{% endif %}</td>
-                <td>{% if item.bActive %}Yes{% else %}No{% endif %}</td>
-                <td>{% if item.bEnabled %}Yes{% else %}No{% endif %}</td>
-                <td>{{ item.sIp }}</td>
-                <td>{% if item.bShowEmail %}Yes{% else %}No{% endif %}</td>
                 <td>{% if item.bPremium %}Yes{% else %}No{% endif %}</td>
                 <td>{{ item.price }}</td>
                 <td>{{ item.contactName }}</td>
                 <td>{{ item.contactEmail }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('item_show', { 'id': item.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('item_edit', { 'id': item.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                <td class="text-center"><a
+                            href="{{ path('item_show', { 'id': item.id }) }}"><i
+                                class="btn btn-success icon icon-eye"></i></a></td>
+                <td class="text-center"><a
+                            href="{{ path('item_edit', { 'id': item.id }) }}"><i
+                                class="btn btn-primary icon icon-refresh"></i></a></td>
+                <td class="text-center">
+                    <a href="#" id="remove-customer-{{ item.id }}"
+                       data-toggle="modal" data-target="#confirm-delete-{{ item.id }}"
+                       class="btn btn-danger icon icon-remove">
+                        {#<i class="btn btn-danger icon icon-remove"></i>#}</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table></div></div></div></div></div></div>
 
     <ul>
         <li>
             <a href="{{ path('item_new') }}">Create a new item</a>
         </li>
     </ul>
-{% endblock %}
+                        {% for item in items %}
+                            <div class="modal fade" id="confirm-delete-{{ item.id }}" tabindex="-1"
+                                 role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">&times;
+                                            </button>
+                                            <h4 class="modal-title arabe" id="myModalLabel"> تأكيد الحذف </h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <p class="arabe">
+                                                هل تريد حذف القسم :
+                                                <br>
+                                                <strong>
+                                                    {{ item.nameItem }}
+                                                </strong>
+                                            </p>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">
+                                                رجوع
+                                            </button>
+                                            <a href="{{ path('item_deleted', { 'id': item.id }) }}"
+                                               class="btn btn-danger arabe" id="btn-remove"> حذف</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {% endblock %}

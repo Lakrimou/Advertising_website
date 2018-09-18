@@ -1,16 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Category creation</h1>
+    <div class="layout-content">
+        <div class="layout-content-body">
+            <div class="title-bar">
+                <h1 class="title-bar-title">
+                    <span class="d-ib">اضافة قسم</span>
+              <span class="d-ib">
+                <a class="title-bar-shortcut" href="#" title="Add to shortcut list" data-container="body"
+                   data-toggle-text="Remove from shortcut list" data-trigger="hover" data-placement="right"
+                   data-toggle="tooltip">
+                  <span class="sr-only">Add to shortcut list</span>
+                </a>
+              </span>
+                </h1>
+                <!--<p class="title-bar-description">
+                    <small>You can personalize your dashboard by using <a href="widgets.html">widgets</a>.</small>
+                </p>-->
+            </div>
+            <div class="row gutter-xs">
+                <div class="col-xs-12">
+                    <div class="col-md-8">
+                        <div class="demo-form-wrapper">
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                            {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                            <input type="submit" class="btn btn-success btn-lg" value=" اضافة القسم"/>
+                            {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('category_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                            <div class="text-right">
+
+                                        <a href="{{ path('category_index') }}" class="btn btn-primary btn-lg">الرجوع الى قائمة الأقسام <i class="icon icon-hand-o-left"></i> </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

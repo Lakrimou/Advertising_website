@@ -1,0 +1,197 @@
+{% extends '::front.html.twig' %}
+{% block title %}
+ - الشركات
+{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('frontend/ivy/css/items.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    {% endblock %}
+{% block body %}
+    <section class="inner-page-content border-bottom top-pad-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="breadcrumb">
+                        <li><a rel="v:url" property="v:title" href="{{ path('taseerafrontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+                        &nbsp;
+                        <li class="cAt"><a rel="v:url" property="v:title" href="{{ path('taseerafrontend_sub_category', {'id':subcategory.subCategory.id}) }}">
+                                {{ subcategory.subCategory.nameCategory|trans }} </a></li>
+                        &nbsp;
+                        <li class="cAt"><a rel="v:url" property="v:title"
+                                           href="{{ path('taseerafrontend_companies', {'id': subcategory.id }) }}">{{ subcategory.nameCategory|trans }}</a>
+                        </li>
+
+                        &nbsp;
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-lg-9">
+                    <!-- advertisement -->
+                    <section class="classiera-advertisement advertisement-v5 section-pad-80 border-bottom">
+                        <div class="tab-divs">
+                            <div class="view-head">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-7 col-xs-8">
+                                            <div class="total-post">
+
+                                                {#<p>القسم الرئيسي : {{ subcategory.subCategory.nameCategory }}</p>
+                                                <p>قسم
+                                                    <span>
+												{{ subcategory.nameCategory }}
+												</span>
+                                                </p>#}
+                                            </div><!--total-post-->
+                                        </div><!--col-lg-6 col-sm-8-->
+                                        <div class="col-lg-6 col-sm-5 col-xs-4">
+                                            <div class="view-as text-right flip">
+                                                <a id="grid" class="grid active" href="#"><i class="fa fa-th"></i></a>
+                                                <a id="list" class="list " href="#"><i class="fa fa-th-list"></i></a>
+                                            </div><!--view-as tab-button-->
+                                        </div><!--col-lg-6 col-sm-4 col-xs-12-->
+                                    </div><!--row-->
+                                </div><!--container-->
+                            </div><!--view-head-->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="all">
+                                    <div class="container">
+                                        <div class="row">
+                                            {% for company in companies %}
+                                                <!--col-lg-4-->
+                                                {% if company.accepted == 1 and company.enabled == 1 %}
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 match-height item item-masonry">
+                                                        <div class="classiera-box-div classiera-box-div-v5">
+                                                            <figure class="clearfix">
+                                                                <div class="premium-img">
+
+                                                                    <img class="img-responsive"
+                                                                         src="{{ asset('backend/img/company/'~company.image) }}"
+                                                                         alt="{{ company.username }}">
+                                                                    <span class="hover-posts">
+															<a href="{{ path('taseerafrontend_items', {'id':company.id, 'id_category':subcategory.id }) }}">{{ company.username }}</a>
+														</span>
+
+
+                                                                </div><!--premium-img-->
+                                                                <div class="detail text-center">
+
+                                                                    <div class="box-icon">
+                                                                        <a href="mailto:{{ company.email }}"><i
+                                                                                    class="fa fa-envelope"></i></a>
+                                                                    </div>
+                                                                    <a href="{{ path('taseerafrontend_items', {'id':company.id, 'id_category':subcategory.id }) }}"
+                                                                       class="btn btn-primary outline btn-style-five">
+                                                                        {{ company.username }}
+                                                                    </a>
+                                                                </div><!--detail text-center-->
+
+                                                            </figure>
+                                                        </div><!--row-->
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div><!--row-->
+                                    </div><!--container-->
+                                </div><!--tabpanel-->
+                            </div><!--tab-content-->
+                        </div><!--tab-divs-->
+                    </section>
+                    <!-- advertisement Style 5-->
+                </div><!--col-md-8 col-lg-9-->
+                <div class="col-md-4 col-lg-3">
+                    <aside class="sidebar">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-6 match-height annonce-left">
+                                <div class="widget-box">
+                                    <div class="widget-title text-center"><h4>{{ 'الإعلانات المميزة'|trans }}</h4></div>
+                                    <div class="widget-content">
+                                        <div class="media footer-pr-widget-v1">
+                                            <div class="media-left">
+                                                <a class="media-img"
+                                                   href="#">
+                                                    <img class="media-object" src="{{ asset('frontend/ivy/img/logoo.jpg') }}"
+                                                         alt="tasseera">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <!--	<span class="price">
+                                                        $15											</span> -->
+                                                <h4 class="media-heading">
+                                                    <a href="#">{{ 'تسعيرة'|trans }}</a>
+                                                </h4>
+										<span class="category">
+						 {{ 'الفئة'|trans }}:
+						<a href="#">{{ 'شركات الدعاية والإعلان'|trans }}</a>
+					</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-6 match-height">
+                                <div class="widget-box">
+                                    <div class="widget-title"><h4>{{ 'أحدث الإعلانات'|trans }}</h4></div>
+                                    <div class="widget-content">
+                                        <div class="media footer-pr-widget-v1">
+                                            <div class="media-left">
+                                                <a class="media-img"
+                                                   href="#">
+                                                    <img class="media-object" src="{{ asset('frontend/ivy/img/logoo.jpg') }}"
+                                                         alt="tasseera">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <!--	<span class="price">
+                                                        QR5515											</span> -->
+                                                <h4 class="media-heading">
+                                                    <a href="#">{{ 'تسعيرة'|trans }}</a>
+                                                </h4>
+										<span class="category">
+						{{ 'الفئة'|trans }}:
+						<a href="#">{{ 'شركات الدعاية والإعلان'|trans }}</a>
+					</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-6 match-height">
+                                <div class="widget-box">
+                                    <div class="widget-title"><h4>{{ 'الاشتراك والمتابعة'|trans }}</h4></div>
+
+                                    <div class="widget-content">
+                                        <div class="social-network">
+                                            <a class="social-icon social-icon-sm footer-social" href="https://www.facebook.com/Tasseera-218512675372085/" target="_blank"><i
+                                                        class="fa fa-facebook"></i></a>
+                                            <a class="social-icon social-icon-sm footer-social" href="https://twitter.com/Tasseera_qtr" target="_blank"><i
+                                                        class="fa fa-twitter"></i></a>
+                                            <a class="social-icon social-icon-sm footer-social" href="https://www.pinterest.fr/tasseera/" target="_blank"><i
+                                                        class="fa fa-pinterest"></i></a>
+
+                                            <a class="social-icon social-icon-sm footer-social" href="https://plus.google.com/u/0/101411620271692572318" target="_blank"><i
+                                                        class="fa fa-google-plus"></i></a> <a
+                                                    class="social-icon social-icon-sm footer-social" href="https://www.youtube.com/channel/UCGXLaW9n8Eqn2WCYeEiqT9A" target="_blank"><i
+                                                        class="fa fa-youtube-play"></i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div><!--row-->
+        </div><!--container-->
+    </section>
+    <!--Content-->
+{% endblock %}
+{% block javascripts %}
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+{% endblock %}

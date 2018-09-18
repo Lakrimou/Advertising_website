@@ -1,0 +1,148 @@
+{% extends "::layout_company.html.twig" %}
+{% block title %}
+    إضافة إعلان
+{% endblock %}
+{% block body %}
+<div class="content">
+    <div class="card ">
+        <div class="card-header ">
+            <h4 class="card-title" style="text-align: center">إضافة إعلان </h4>
+
+        </div>
+        <div class="card-body ">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                        {{ form_errors(form) }}
+                        <div class="form-group">
+                            {{ form_label(form.nameItem, "اسم االاعلان", {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.nameItem) }}
+                            {{ form_widget(form.nameItem, {'attr': {'class': 'form-control'}}) }}
+
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.description, "وصف الاعلان", {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.description) }}
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        {#<div class="form-group">
+                            {{ form_label(form.dateExpiration, "تاريخ انتهاء الاعلان", {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.dateExpiration) }}
+                            {{ form_widget(form.dateExpiration) }}
+                        </div>#}
+                        <div class="form-group">
+                            {{ form_label(form.bShowEmail, {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.bShowEmail) }}
+                            {{ form_widget(form.bShowEmail, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        {#<div class="form-group">
+                            {{ form_label(form.bPremium, "بريميم", {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.bPremium) }}
+                            {{ form_widget(form.bPremium, {'attr': {'class': 'form-control'}}) }}
+                        </div>#}
+                        <div class="form-group">
+                            {{ form_label(form.price, "السعر", {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.price) }}
+                            {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        {#<div class="form-group">
+                            {{ form_label(form.contactName, "إسم الشركة لتواصل", {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.contactName) }}
+                            {{ form_widget(form.contactName, {'attr': {'class': 'form-control'}}) }}
+                        </div>#}
+                        {#<div class="form-group">
+                            {{ form_label(form.contactEmail, "الايميل", {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.contactEmail) }}
+                            {{ form_widget(form.contactEmail, {'attr': {'class': 'form-control'}}) }}
+                        </div>#}
+                        {#<div class="form-group bs-docs-example">
+                            {{ form_label(form.categories, "القسم", {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.categories) }}
+                            {{ form_widget(form.categories, {'attr': {'class': 'selectpicker'}}) }}
+                        </div>#}
+                        {#<div class="form-group">
+                            {{ form_label(form.userTwo, "اسم المستخدم", {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.userTwo) }}
+                            {{ form_widget(form.userTwo, {'attr': {'class': 'form-control'}}) }}
+                        </div>#}
+                        {#<div class="form-group">
+                            {{ form_label(form.userOne, "اسم الشركة", {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_errors(form.userOne) }}
+                            {{ form_widget(form.userOne, {'attr': {'class': 'form-control'}}) }}
+                        </div>#}
+
+                        <ul class="medias"
+                            data-prototype="{{ form_widget(form.medias.vars.prototype)|e('html_attr') }}">
+                            {% for element in form.medias %}
+                                <li>
+                                    {{ form_widget(element.media) }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {#<div id="appbundle_user_files" data-prototype="">
+                        </div>#}
+                        <input type="submit" class="btn btn-success btn-lg" value="اضافة الاعلان"/>
+                        {{ form_end(form) }}
+                    </div>
+                    <div class="text-right">
+
+                        <a href="{{ path('item_index') }}" class="btn btn-primary btn-lg">الرجوع الى قائمة
+                            الاعلانات <i class="icon icon-hand-o-left"></i> </a>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('jquery.min.js') }}"></script>
+    <script lang="javascript" type="text/javascript">
+
+        var $collectionHolder;
+        // setup an "add a tag" link
+        var $addTagLink = $('<a href="#" class="add_tag_link btn ">اضافة صورة</a>');
+        var $newLinkLi = $('<li></li>').append($addTagLink);
+
+        jQuery(document).ready(function () {
+            // Get the ul that holds the collection of tags
+            $collectionHolder = $('ul.medias');
+            // add the "add a tag" anchor and li to the tags ul
+            $collectionHolder.append($newLinkLi);
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+            //console.log($collectionHolder.data('index', $collectionHolder.find(':input').length));
+            $addTagLink.on('click', function (e) {
+                // console.log($('ul.files').data("pr"));
+                //console.log('je suis la');
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+                // add a new tag form (see next code block)
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+        });
+        function addTagForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+            // console.log(prototype);
+            // get the new index
+            var index = $collectionHolder.data('index');
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,69 @@
+taseerafrontend_homepage:
+    path:     /
+    defaults: { _controller: TaseerafrontendBundle:Default:index }
+
+taseerafrontend_categories:
+    path:     /categories
+    defaults: { _controller: TaseerafrontendBundle:Default:allCategories }
+
+taseerafrontend_aboutUs:
+    path:     /about-us
+    defaults: { _controller: TaseerafrontendBundle:Default:aboutUs }
+
+taseerafrontend_contactUs:
+    path:     /contact-us
+    defaults: { _controller: TaseerafrontendBundle:Default:contactUs }
+
+taseerafrontend_sub_category:
+    path:     /sub-category/{id}
+    defaults: { _controller: TaseerafrontendBundle:Default:subCategory }
+
+taseerafrontend_companies:
+    path:     /{id}/companies
+    defaults: { _controller: TaseerafrontendBundle:Default:companies }
+
+taseerafrontend_items:
+    path:     /{id}/{id_category}/items
+    defaults: { _controller: TaseerafrontendBundle:Default:addsCompany }
+
+taseerafrontend_adds:
+    path:     /{id}/{id_category}/{id_item}/advert
+    defaults: { _controller: TaseerafrontendBundle:Default:items }
+
+taseerafrontend_contact:
+    path:  /contact
+    defaults: { _controller: "TaseerafrontendBundle:Default:contact" }
+    methods:  [GET, POST]
+
+taseerafrontend_search:
+    path:     /search
+    defaults: { _controller: TaseerafrontendBundle:Default:search }
+
+taseerafrontend_sendEmails:
+    path:    /{id}/send_emails
+    defaults: { _controller: TaseerafrontendBundle:Default:sendMails }
+
+taseerafrontend_getRegion:
+    path:    /getRegion
+    defaults: { _controller: TaseerafrontendBundle:Default:getRegion }
+
+taseerafrontend_profileUser:
+    path:    /user-profile
+    defaults: { _controller: TaseerafrontendBundle:Default:profileUser }
+
+taseerafrontend_completeProfileUser:
+    path:    /profile-user
+    defaults: { _controller: TaseerafrontendBundle:Default:completeProfileUser }
+
+taseerafrontend_contctus:
+    path:    /contct-us
+    defaults: { _controller: TaseerafrontendBundle:Default:contctUs }
+
+taseerafrontend_switch_language:
+    path: /lg/{locale}
+    defaults: { _controller: TaseerafrontendBundle:Default:switchlanguage }
+
+taseera_edit_user_picture:
+    path:     /edit-picture-user/{id}
+    defaults: { _controller: TaseerafrontendBundle:Default:editPictureUser }
+
