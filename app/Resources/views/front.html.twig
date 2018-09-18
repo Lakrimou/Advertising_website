@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block meta %}
+
+    {% endblock %}
+   {# <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="xmlrpc.php">#}
+    {#<meta property="og:image" content="wp-content/uploads/2017/06/ivy-logo.png"/>#}
+    <link rel="shortcut icon" href="{{ asset('frontend/ivy/img/icone_logo.ico') }}"
+          type="image/x-icon"/>
+    <!--[if lt IE 9]-->
+    {#<script src="http://demo.joinwebs.com/classiera/ivy/wp-content/themes/classiera/js/html5.js"></script>#}
+    <![endif]-->
+    <title>  - تسعيرة | Tasseera {% block title %}{% endblock %}</title>
+    {#<script type="text/javascript" src="{{ asset('frontend/ivy/js/index.js') }}"></script>#}
+    {#<link rel='dns-prefetch' href='http://maps.googleapis.com/'/>
+    <link rel='dns-prefetch' href='http://fonts.googleapis.com/'/>
+    <link rel='dns-prefetch' href='http://s.w.org/'/>#}
+    {#<link rel="alternate" type="application/rss+xml" title="Classiera Classified Ads WordPress Theme &raquo; Feed"
+          href="feed/index.html"/>#}
+    {#<link rel="alternate" type="application/rss+xml"
+          title="Classiera Classified Ads WordPress Theme &raquo; Comments Feed" href="comments/feed/index.html"/>#}
+    <link rel="stylesheet" text="text/css" href="{{ asset('frontend/ivy/css/index.css') }}">
+    <link rel='stylesheet' id='dashicons-css'
+          href='{{ asset('frontend/ivy/wp-includes/css/dashicons.min7bcd.css?ver=4.8.3') }}' type='text/css'
+          media='all'/>
+    {#<link rel='stylesheet' id='thickbox-css'
+          href='{{ asset('frontend/ivy/wp-includes/js/thickbox/thickbox7bcd.css?ver=4.8.3') }}' type='text/css'
+          media='all'/>#}
+    <link rel='stylesheet' id='woocommerce-layout-css'
+          href='{{ asset('frontend/ivy/wp-content/plugins/woocommerce/assets/css/woocommerce-layout6173.css?ver=3.0.8') }}'
+          type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='woocommerce-smallscreen-css'
+          href='{{ asset('frontend/ivy/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen6173.css?ver=3.0.8') }}'
+          type='text/css'
+          media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' id='woocommerce-general-css'
+          href='{{ asset('frontend/ivy/wp-content/plugins/woocommerce/assets/css/woocommerce6173.css?ver=3.0.8') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='parent-style-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/style7bcd.css?ver=4.8.3') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='child-style-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera-child/style7bcd.css?ver=4.8.3') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='buttons-css'
+          href='{{ asset('frontend/ivy/wp-includes/css/buttons.min7bcd.css?ver=4.8.3') }}' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='mediaelement-css'
+          href='{{ asset('frontend/ivy/wp-includes/js/mediaelement/mediaelementplayer.min51cd.css?ver=2.22.0') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='wp-mediaelement-css'
+          href='{{ asset('frontend/ivy/wp-includes/js/mediaelement/wp-mediaelement.min7bcd.css?ver=4.8.3') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='media-views-css'
+          href='{{ asset('frontend/ivy/wp-includes/css/media-views.min7bcd.css?ver=4.8.3') }}' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='imgareaselect-css'
+          href='{{ asset('frontend/ivy/wp-includes/js/imgareaselect/imgareaselect3bf4.css?ver=0.9.8') }}'
+          type='text/css' media='all'/>
+    {#<link rel='stylesheet' id='classiera-fonts-css'
+          href='http://fonts.googleapis.com/css?family=Montserrat%3A400%2C700%2C400italic%2C700italic%257CLato%3A400%2C700&amp;subset=latin%2Clatin-ext'
+          type='text/css' media='all'/>#}
+    <link rel='stylesheet' id='bootstrap-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/bootstrap68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+    {% if app.request.locale == 'ar' %}
+        <link rel='stylesheet'
+              href='{{ asset('frontend/ivy/bootstrap-rtl-master/bootstrap-rtl-master/dist/css/bootstrap-rtl.css') }}'
+              type='text/css'
+              media='all'/>
+    {% endif %}
+    <link rel='stylesheet' id='animate.min-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/animate.min68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='bootstrap-dropdownhover.min-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/bootstrap-dropdownhover.min68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='classiera-components-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/classiera-components68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='classiera-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/classiera68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='font-awesome-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/font-awesome68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='material-design-iconic-font-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/material-design-iconic-font68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='owl.carousel.min-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/owl.carousel.min68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='owl.theme.default.min-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/owl.theme.default.min68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='responsive-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/responsive68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='bootstrap-slider-css'
+          href='{{ asset('frontend/ivy/wp-content/themes/classiera/css/bootstrap-slider68b3.css?ver=1') }}'
+          type='text/css' media='all'/>
+
+    {% block stylesheet %}
+
+    {% endblock %}
+
+
+    <script type='text/javascript'
+            src='{{ asset('frontend/ivy/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4') }}'></script>
+    {#<script type='text/javascript'
+            src='{{ asset('frontend/ivy/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1') }}'></script>#}
+    {#<script type='text/javascript'>
+        /* <![CDATA[ */
+        var userSettings = {"url": "\/classiera\/ivy\/", "uid": "0", "time": "1510512065", "secure": ""};
+        /* ]]> */
+    </script>#}
+    <script type='text/javascript' src='{{ asset('frontend/ivy/wp-includes/js/utils.min7bcd.js?ver=4.8.3') }}'></script>
+    <script type='text/javascript'
+            src='{{ asset('frontend/ivy/wp-includes/js/plupload/plupload.full.mincc91.js?ver=2.1.8') }}'></script>
+    <!--[if lt IE 8]>
+    <!--<script type='text/javascript'
+            src='http://demo.joinwebs.com/classiera/ivy/wp-includes/js/json2.min.js?ver=2015-05-03'></script>-->
+    <![endif]-->
+    {#<link rel='https://api.w.org/' href='{{ asset('frontend/ivy/wp-json/index.html') }}'/>
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc0db0.php?rsd"/>
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml"
+          href="{{ asset('frontend/ivy/wp-includes/wlwmanifest.xml') }}"/>#}
+    {#<meta name="generator" content="WordPress 4.8.3"/>
+    <meta name="generator" content="WooCommerce 3.0.8"/>#}
+    {#<link rel="canonical" href="index.html"/>
+    <link rel='shortlink' href='index.html'/>#}
+    {#<link rel="alternate" type="application/json+oembed"
+          href="wp-json/oembed/1.0/embedbab3.json?url=http%3A%2F%2Fdemo.joinwebs.com%2Fclassiera%2Fivy%2F"/>#}
+    {#<link rel="alternate" type="text/xml+oembed"
+          href="wp-json/oembed/1.0/embed03c7?url=http%3A%2F%2Fdemo.joinwebs.com%2Fclassiera%2Fivy%2F&amp;format=xml"/>#}
+    {#<script type="text/javascript">
+        var ajaxurl = 'wp-admin/admin-ajax.html';
+    </script>#}
+    {#<script type="text/javascript">
+        var ajaxLocation = 'wp-content/themes/classiera/inc/getlocation.html';
+    </script>#}
+
+    <noscript>
+        <style>.woocommerce-product-gallery {
+                opacity: 1 !important;
+            }</style>
+    </noscript>
+
+</head>
+<body class="home page-template page-template-template-homepage-v5 page-template-template-homepage-v5-php page page-id-6 single-author" {% if app.request.attributes.get('_route') == 'user_two_registration' or app.request.attributes.get('_route') == 'user_one_registration' or app.request.attributes.get('_route') == 'user_one_registration' or app.request.attributes.get('_route') == 'fos_user_security_login' or app.request.attributes.get('_route') == 'company_login' %}style="background-image: url({{ asset('frontend/ivy/img/categories-bg.jpg') }});"{% endif %}>
+<header>
+    <div id="header">
+        <div id="register">
+            <nav class="navbar navbar-default navbar-fixed-top menuuu">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand" href="#">
+                            <ul class="langue">
+                                {#<li>{{ app.request.locale }}</li>#}
+                                <li><a href="{{ path('taseerafrontend_switch_language', {'locale':'ar'}) }}"><img src="{{ asset('frontend/ivy/img/flag-qatar.png') }}"
+                                                         alt="arabe" height="30" width="30">عربي</a>
+                                </li>
+
+                                <li><a href="{{ path('taseerafrontend_switch_language', {'locale':'en'}) }}"><img src="{{ asset('frontend/ivy/img/flag-EN.png') }}" alt="English"
+                                                         height="30" width="30">English</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    {#<div class="block-center" style="display: inline-box;">
+                        <li class="text-right">
+                            <img src="{{ asset('frontend/ivy/img/slogan.jpg') }}" alt="slogan">
+                        </li>
+                    </div>#}
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right ">
+
+
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {% if is_granted('ROLE_COMPANY') %}
+                                    <li><a href="{{ path('taseera_company_profile') }}">{{ app.user.username }}</a></li>
+                                    <li><a href="{{ path('company_logout') }}"><span
+                                                    class="glyphicon glyphicon-log-in pull-right"></span>{{ 'تسجيل الخروج للشركة'|trans }}</a></li>
+                                {% elseif is_granted('ROLE_USER') %}
+                                    <li><a href="#">{{ app.user.username }}</a></li>
+                                    <li class="divider-vertical"></li>
+                                    <li><a href="{{ path('taseerafrontend_completeProfileUser') }}">{{ 'الملف الشخصي'|trans }}</a></li>
+                                    <li class="divider-vertical"></li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}"><span
+                                                    class="glyphicon glyphicon-log-in pull-right"></span>{{ 'تسجيل الخروج للمستخدم'|trans }}</a></li>
+
+                                {% endif %}
+                            {% else %}
+                                {#<a href="{{ path('fos_user_security_login') }}">#}
+                                    <li><a href="{{ path('user_one_registration') }}"><span
+                                                    class="glyphicon glyphicon-tower pull-right"></span> {{ 'الشركات'|trans }}  &nbsp;&nbsp;</a></li>
+                                    <li><a href="{{ path('user_two_registration') }}"><span
+                                                    class="glyphicon glyphicon-folder-open pull-right"></span>  {{ 'المستخدمين'|trans }}  &nbsp;&nbsp;</a></li>
+                                {#</a>#}
+                            {% endif %}
+                            {#<li><a href="login.php">&nbsp;اضافة اعلان <span
+                                            class="glyphicon glyphicon-plus-sign pull-right"></span></a></li>#}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-top" id="nav-menu">
+        <div class="navbar-header menu-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" id="logo" href="{{ path('taseerafrontend_homepage') }}">
+                <img src="{{ asset('frontend/ivy/img/logo.png') }}" alt="logo">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse menu-collapse" id="menu">
+            <ul class="nav navbar-nav navbar-right menu-droit">
+                <li class="divider-vertical"></li>
+                {% if app.request.locale == 'ar' %}
+                    <li><a href="{{ path('taseerafrontend_homepage') }}">&nbsp;    <span class="glyphicon glyphicon-home pull-right"></span> {{ 'الرئيسية'|trans }}</a>
+                    </li>
+                    {% elseif app.request.locale == 'en' %}
+
+                        <li><a href="{{ path('taseerafrontend_homepage') }}">  <span class="glyphicon glyphicon-home pull-left"></span>  &nbsp;   {{ 'الرئيسية'|trans }} </a>
+                        </li>
+                {% endif %}
+                <li class="divider-vertical"></li>
+                {% if app.request.locale == 'ar' %}
+                <li><a href="{{ path('taseerafrontend_categories') }}">&nbsp;{{ 'الأقسام'|trans }}<span
+                                class="glyphicon glyphicon-th-list pull-right"></span></a></li>
+                {% elseif app.request.locale == 'en' %}
+                <li><a href="{{ path('taseerafrontend_categories') }}">&nbsp;{{ 'الأقسام'|trans }}<span
+                                class="glyphicon glyphicon-th-list pull-left"></span></a></li>
+                {% endif %}
+                {#<li><a href="#services">&nbsp;الخدمات<span
+                                class="glyphicon glyphicon-level-up pull-right"></span></a></li>#}
+                <li class="divider-vertical"></li>
+                {% if app.request.locale == 'ar' %}
+                <li><a href="{{ path('taseerafrontend_aboutUs') }}">&nbsp; {{ 'من نحن'|trans }} <span
+                                class="glyphicon glyphicon-info-sign pull-right"></span></a></li>
+                {% elseif app.request.locale == 'en' %}
+                    <li>
+                <a href="{{ path('taseerafrontend_aboutUs') }}">&nbsp; {{ 'من نحن'|trans }}<span
+                            class="glyphicon glyphicon-info-sign pull-left"></span></a></li>
+                {% endif %}
+                <li class="divider-vertical"></li>
+                {% if app.request.locale == 'ar' %}
+                <li><a href="{{ path('taseerafrontend_contactUs') }}">&nbsp;{{ 'اتصل بنا'|trans }} <span
+                                class="glyphicon glyphicon-earphone pull-right"></span> </a></li>
+                {% elseif app.request.locale == 'en' %}
+                <li><a href="{{ path('taseerafrontend_contactUs') }}">&nbsp;{{ 'اتصل بنا'|trans }} <span
+                                class="glyphicon glyphicon-earphone pull-left"></span> </a></li>
+                {% endif %}
+                <li class="divider-vertical"></li>
+                {#<li><a href="termes-and-conditions.php">&nbsp; الأحكام والشروط <span
+                                class="glyphicon glyphicon-folder-close pull-right"></span></a></li>#}
+            </ul>
+
+        </div><!--/.nav-collapse -->
+    </div>
+    <!--/.nav-collapse -->
+    </div><!--nav bar-->
+</header>
+{% block body %}
+{% endblock %}
+<section>
+    <section {% if app.request.attributes.get('_route') == 'fos_user_registration_confirmed' or app.request.attributes.get('_route') == 'fos_user_resetting_request' or app.request.attributes.get('_route') == 'fos_user_resetting_reset' or app.request.attributes.get('_route') == 'fos_user_resetting_check_email' or app.request.attributes.get('_route') == 'fos_user_profile_show' %}style="position: absolute; bottom: 0; width: 100%;" {% endif %}>
+        <section class="footer-bottom" {% if app.request.attributes.get('_route') == 'fos_user_registration_check_email' %}style="position: absolute; bottom: 0; width: 100%;" {% endif %}>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <p> {{ 'جميع الحقوق محفوظة© 2017 طورت بواسطة شركة برقش للبرمجة'|trans }}
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <p>
+                            {{ 'تابعونا على'|trans }} <a href="https://www.facebook.com/Tasseera-218512675372085/" target="_blank" title="facebook"> <i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i> </a>
+                            <a href="https://twitter.com/Tasseera_qtr" target="_blank" title="twitter"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>&nbsp;
+                            <a href="https://www.instagram.com/tasseera/" target="_blank" title="instagram"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i> </a> &nbsp;
+                            <a href="https://plus.google.com/u/0/101411620271692572318" target="_blank" title="google plus"><i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i></a>&nbsp;
+                            <a href="https://www.youtube.com/channel/UCGXLaW9n8Eqn2WCYeEiqT9A" target="_blank" title="youtube"><i class="fa fa-youtube fa-2x" aria-hidden="true"></i> </a>&nbsp;
+                            <a href="https://www.linkedin.com/company/11501680/" target="_blank" title="linkedin"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i> </a>&nbsp;
+                        </p>
+                    </div>
+
+                </div><!--row-->
+            </div><!--container-->
+        </section>
+        <!-- back to top -->
+        <a href="#" id="back-to-top" title="Back to top" class="social-icon social-icon-md"><i
+                    class="fa fa-angle-double-up removeMargin"></i></a>
+        <!--[if lte IE 8]>
+        <style>
+            .attachment:focus {
+                outline: #1e8cbe solid;
+            }
+
+            .selected.attachment {
+                outline: #1e8cbe solid;
+            }
+        </style>
+        <![endif]-->
+
+
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min6173.js?ver=3.0.8') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min44fd.js?ver=2.70') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min6b25.js?ver=2.1.4') }}"></script>
+
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min6173.js?ver=3.0.8') }}"></script>
+
+
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-content/themes/classiera-child/classiera-child7bcd.js?ver=4.8.3') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/underscore.min4511.js?ver=1.8.3') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/shortcode.min7bcd.js?ver=4.8.3') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/backbone.min9632.js?ver=1.2.3') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/wp-util.min7bcd.js?ver=4.8.3') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/wp-backbone.min7bcd.js?ver=4.8.3') }}"></script>
+
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/media-models.min7bcd.js?ver=4.8.3') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/plupload/wp-plupload.min7bcd.js?ver=4.8.3') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/jquery/ui/core.mine899.js?ver=1.11.4') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/jquery/ui/widget.mine899.js?ver=1.11.4') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/jquery/ui/mouse.mine899.js?ver=1.11.4') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/jquery/ui/sortable.mine899.js?ver=1.11.4') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/mediaelement/mediaelement-and-player.min51cd.js?ver=2.22.0') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/mediaelement/wp-mediaelement.min7bcd.js?ver=4.8.3') }}"></script>
+        {#<script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/thickbox/thickboxab87.js?ver=3.1-20121105') }}"></script>#}
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min6173.js?ver=3.0.8') }}"></script>
+
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/wp-util.min7bcd.js?ver=4.8.3') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/wp-backbone.min7bcd.js?ver=4.8.3') }}"></script>
+
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/mediaelement/mediaelement-and-player.min51cd.js?ver=2.22.0') }}"></script>
+        <script type='text/javascript'
+                src="{{ asset('frontend/ivy/wp-includes/js/mediaelement/wp-mediaelement.min7bcd.js?ver=4.8.3') }}"></script>
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-includes/js/media-views.min7bcd.js?ver=4.8.3') }}'></script>
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-includes/js/media-editor.min7bcd.js?ver=4.8.3') }}'></script>
+        {#<script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-includes/js/media-audiovideo.min7bcd.js?ver=4.8.3') }}'></script>#}
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-content/themes/classiera/js/bootstrap.min7bcd.js?ver=4.8.3') }}'></script>
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-content/themes/classiera/js/bootstrap-dropdownhover7bcd.js?ver=4.8.3') }}'></script>
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-content/themes/classiera/js/validator.min7bcd.js?ver=4.8.3') }}'></script>
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-content/themes/classiera/js/owl.carousel.min7bcd.js?ver=4.8.3') }}'></script>
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-content/themes/classiera/js/jquery.matchHeight7bcd.js?ver=4.8.3') }}'></script>
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-content/themes/classiera/js/bootstrap-slider7bcd.js?ver=4.8.3') }}'></script>
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-content/themes/classiera/js/infinitescroll7bcd.js?ver=4.8.3') }}'></script>
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-content/themes/classiera/js/masonry.pkgd.min7bcd.js?ver=4.8.3') }}'></script>
+        {#<script type='text/javascript'
+                src='{{ asset('forntend/ivy/wp-content/themes/classiera/js/classiera7bcd.js?ver=4.8.3') }}'></script>#}
+        <script type='text/javascript'
+                src='{{ asset('frontend/ivy/wp-includes/js/wp-embed.min7bcd.js?ver=4.8.3') }}'></script>
+        {#<script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+#}
+        {% block javascripts %}
+
+        {% endblock %}
+</section></section>
+</body>
+</html>

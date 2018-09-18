@@ -1,0 +1,56 @@
+{% extends "::front.html.twig" %}
+{% block body %}
+    <section class="page-content-404" style="margin-top:150px !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="background-wrap">
+                        <div class="x1">
+                            <div class="cloud-inner"></div>
+                            <div class="cloud"></div>
+                        </div>
+
+                        <div class="x2">
+                            <div class="cloud-inner"></div>
+                            <div class="cloud"></div>
+                        </div>
+
+                        <div class="x3">
+                            <div class="cloud-inner"></div>
+                            <div class="cloud"></div>
+                        </div>
+
+                        <div class="x4">
+                            <div class="cloud-inner"></div>
+                            <div class="cloud"></div>
+                        </div>
+
+                        <div class="x5">
+                            <div class="cloud-inner"></div>
+                            <div class="cloud"></div>
+                        </div>
+                    </div>
+                    <div class="img-404 text-center">
+                        <img class="img-responsive" src="{{ asset('frontend/ivy/wp-content/themes/classiera/images/404.png') }}" alt="403">
+                    </div>
+                    <div class="text-404 text-center">
+                        <h1 class="text-uppercase">Oops, {{ status_code }} {{ status_text }} </h1>
+                        <h2 class="text-uppercase">Sorry you haven't the rule to access to this page</h2>
+                        <h2 class="text-uppercase">عذرا، لا يمكنك الولوج لهذه الصفحة</h2>
+                        <p>حدث خطأ وأنت لا تملك الحق للولوج لهذه الصفحة </p>
+                        <p>Either somthing went wrong and you haven't the right to access to this page anymore.</p><br>
+                        <a href="{{ path('taseerafrontend_homepage') }}" class="btn btn-primary btn-sm sharp btn-style-one">العودة إلى الصفحة الرئيسية</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="grass-404" style="margin-bottom: 100px !important;"></section>
+
+
+    <!-- back to top -->
+    <a href="#" id="back-to-top" title="Back to top" class="social-icon social-icon-md"><i class="fa fa-angle-double-up removeMargin"></i></a>
+    <!--[if lte IE 8]>
+
+    <![endif]-->
+{% endblock %}

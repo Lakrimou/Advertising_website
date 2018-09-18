@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Usertwos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userTwo in userTwos %}
+            <tr>
+                <td><a href="{{ path('usertwo_show', { 'id': userTwo.id }) }}">{{ userTwo.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('usertwo_show', { 'id': userTwo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('usertwo_edit', { 'id': userTwo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('usertwo_new') }}">Create a new userTwo</a>
+        </li>
+    </ul>
+{% endblock %}

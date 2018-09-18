@@ -1,0 +1,16 @@
+registration:
+    type: rest
+    resource: Taseera\EndpointBundle\Controller\RegistrationController
+
+login:
+    type: rest
+    resource: Taseera\EndpointBundle\Controller\RestLoginController
+
+password_management:
+    type: rest
+    resource: Taseera\EndpointBundle\Controller\RestPasswordManagementController
+
+
+profile:
+    type: rest
+    resource: Taseera\EndpointBundle\Controller\RestProfileController

@@ -1,0 +1,28 @@
+<div style="margin-top: 20px;">
+
+    <form action="
+
+{% if app.request.attributes.get('_route') == 'user_one_registration' %}
+{{ path('user_one_registration') }}
+{% endif %}
+
+{% if app.request.attributes.get('_route') == 'user_two_registration' %}
+{{ path('user_two_registration') }}
+{% endif %}
+
+"
+          method="POST" class="fos_user_registration_register">
+        {{ form_widget(form) }}
+        <div class="form-group text-center">
+            <input type="submit" value="{{ 'تسجيل'|trans }}" class="btn btn-primary sharp btn-md btn-style-one" />
+        </div>
+    </form>
+    {% if app.request.attributes.get('_route') == 'user_one_registration' %}
+    <div class="text-right">
+        <a href="{{ path('company_login') }}" class="">{{ 'الدخول اذا كان لديك حساب'|trans }}</a>
+    </div>
+    {% endif %}
+    {% if app.request.attributes.get('_route') == 'user_two_registration' %}
+        <a href="{{ path('fos_user_security_login') }}" class="">{{ 'الدخول اذا كان لديك حساب'|trans }}</a>
+    {% endif %}
+</div>

@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Userones list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userOne in userOnes %}
+            <tr>
+                <td><a href="{{ path('userone_show', { 'id': userOne.id }) }}">{{ userOne.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('userone_show', { 'id': userOne.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('userone_edit', { 'id': userOne.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('userone_new') }}">Create a new userOne</a>
+        </li>
+    </ul>
+{% endblock %}

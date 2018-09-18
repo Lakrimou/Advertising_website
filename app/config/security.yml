@@ -1,28 +1,98 @@
-# app/config/security.yml
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_ADMIN:       [ROLE_USER, ROLE_COMPANY]
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
     firewalls:
+        api_login:
+            pattern:  ^/endpoint/login
+            stateless: true
+            anonymous: true
+            form_login:
+                check_path:               /endpoint/login_check
+                require_previous_session: false
+                username_parameter:       username
+                password_parameter:       password
+                success_handler:          lexik_jwt_authentication.handler.authentication_success
+                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+            logout: true
+        api_register:
+            pattern: ^/endpoint/register-company
+            anonymous: true
+        api:
+            pattern:   ^/endpoint
+            stateless: true
+            lexik_jwt: ~
+
+        healthcheck:
+            pattern: ^/endpoint/ping$
+            anonymous: true
+
+        api_docs:
+            pattern: ^/api/doc
+            anonymous: true
+
+        api_password_reset:
+            pattern: ^/endpoint/password/reset
+            anonymous: true
+
+
+        admin:
+            pattern: ^/admin(.*)
+            form_login:
+                provider: fos_userbundle
+                login_path: admin_login
+                check_path: admin_login_check
+               # check_path verification de l'autentification
+                default_target_path:    /admin
+            logout:
+                 path:           /admin/logout
+                 target:         /admin/login
+            anonymous:    true
+        company:
+            pattern: ^/company(.*)
+            form_login:
+                provider: fos_userbundle
+                login_path: company_login
+                check_path: company_login_check
+               # check_path verification de l'autentification
+                default_target_path:    /company/profile
+            logout:
+                path:           /company/logout
+                target:         /company/login
+            anonymous:    true
         main:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
                 csrf_token_generator: security.csrf.token_manager
-
+                default_target_path: taseerafrontend_homepage
+                always_use_default_target_path: true
             logout:       true
             anonymous:    true
+
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/endpoint/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/company/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/company/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/company/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/company/, role: ROLE_COMPANY }
+        - { path: ^/endpoint/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/endpoint, roles: IS_AUTHENTICATED_FULLY }

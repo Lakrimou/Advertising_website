@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Medium</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ medium.id }}</td>
+            </tr>
+            <tr>
+                <th>Bimage</th>
+                <td>{% if medium.bImage %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Src</th>
+                <td>{{ medium.src }}</td>
+            </tr>
+            <tr>
+                <th>Alt</th>
+                <td>{{ medium.alt }}</td>
+            </tr>
+            <tr>
+                <th>Dateaddmedia</th>
+                <td>{% if medium.dateAddMedia %}{{ medium.dateAddMedia|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('media_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('media_edit', { 'id': medium.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

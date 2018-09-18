@@ -1,33 +1,104 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-    </head>
-    <body>
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+{% extends  "::front.html.twig" %}
+{% block body %}
+    <div>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {% if app.request.attributes.get('_route') == 'user_one_registration' %}
+                <a href="{{ path('company_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            {% endif %}
+            {% if app.request.attributes.get('_route') == 'user_two_registration' %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
                 <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             {% endif %}
-        </div>
-
-        {% if app.request.hasPreviousSession %}
-            {% for type, messages in app.session.flashbag.all() %}
-                {% for message in messages %}
-                    <div class="flash-{{ type }}">
-                        {{ message }}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>
+        {% else %}
+            {% if app.request.attributes.get('_route') == 'user_one_registration' %}
+                <div class="row" style="padding-top: 150px;">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="text-left">
+                                {#<a href="{{ path('company_login') }}" > اذا كان لديك حساب?</a>#}
+                                <a href="{{ path('company_login') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-log-in pull-right"></span>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                            </div>
                     </div>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
+                    <div class="col-md-6 col-sm-6 col-xs-6" >
+                        <div class="text-right">
+                            <a href="{{ path('user_two_registration') }}" class="btn btn-primary btn-lg"><span
+                                        class="glyphicon glyphicon-user pull-right"></span>{{ 'المستخدمين'|trans }}</a>
+                        </div>
+                    </div>
 
-        <div>
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
+                </div>
+            {% endif %}
+            {% if app.request.attributes.get('_route') == 'user_two_registration' %}
+                <div class="row" style=padding-top: 150px;">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="text-left">
+                        {#<a href="{{ path('fos_user_security_login') }}" > اذا كان لديك حساب?</a>#}
+                            <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-log-in pull-right"></span>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6" >
+                        <div class="text-right">
+                            <a href="{{ path('user_one_registration') }}" class="btn btn-primary btn-lg"><span
+                                        class="glyphicon glyphicon-tower pull-right"></span>{{ 'الشركات'|trans }}</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+                    {% endif %}
+    </div>
+
+
+
+
+
+
+
+
+
+    {% if app.request.hasPreviousSession %}
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <div>
+    <section class="inner-page-content border-bottom {% if app.request.attributes.get('_route') == 'company_login' %} top-pad-50 {% endif %} {% if app.request.attributes.get('_route') == 'fos_user_security_login' %} top-pad-50 {% endif %}">
+    <div class="login-register {% if app.request.attributes.get('_route') == 'company_login' %} top-pad-50 {% endif %} {% if app.request.attributes.get('_route') == 'fos_user_security_login' %} top-pad-50 {% endif %}" {% if app.request.attributes.get('_route') == 'fos_user_registration_check_email' or app.request.attributes.get('_route') == 'fos_user_resetting_request' or app.request.attributes.get('_route') == 'fos_user_resetting_reset' or app.request.attributes.get('_route') == 'fos_user_resetting_check_email' %}style="padding-top: 214px;"{% endif %}>
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-11 col-sm-12 center-block"
+             style="-webkit-border-radius:5px ;-moz-border-radius: 5px;border-radius:5px;padding:20px; background-color:#e7e7e7;{% if app.request.attributes.get('_route') == 'fos_user_registration_confirmed' %} margin-top: 150px;{% endif %}">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="classiera-login-register-heading border-bottom text-center" style="margin-bottom: 0; padding-bottom: 0;">
+                        {% if app.request.attributes.get('_route') == 'user_one_registration' %}
+                            <h2><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> {{ 'التسجيل للشركات'|trans }}</h2>
+                        {% endif %}
+                        {% if app.request.attributes.get('_route') == 'user_two_registration' %}
+                            <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ 'التسجيل للمستخدمين'|trans }}</h2>
+                        {% endif %}
+                    </div>
+                </div><!--col-lg-12-->
+            </div><!--row-->
+            <div class="row">
+
+                <div class="col-lg-12">
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+            </div>
         </div>
-    </body>
-</html>
+    </div></div></div></section></div>
+{% endblock %}

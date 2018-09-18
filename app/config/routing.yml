@@ -1,12 +1,70 @@
-# app/config/routing.yml
+routing_rest:
+    resource: routing_rest.yml
+
+api_login_check:
+    path: /endpoint/login_check
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+taseera_endpoint:
+    resource: "@TaseeraEndpointBundle/Controller/"
+    type:     annotation
+    prefix:   /endpoint
+
+taseera_company:
+    resource: "@TaseeraCompanyBundle/Resources/config/routing.yml"
+    prefix:   /company
+
+company_login:
+    path:  /company/login
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+company_login_check:
+    path:  /company/login_check
+    defaults: { _controller: FOSUserBundle:Security:check }
+
+company_logout:
+    path:  /company/logout
+    defaults: { _controller: FOSUserBundle:Security:logout }
+
+taseerafrontend:
+    resource: "@TaseerafrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+admin_login:
+    path:  /admin/login
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+admin_login_check:
+    path:  /admin/login_check
+    defaults: { _controller: FOSUserBundle:Security:check }
+
+admin_logout:
+    path:  /admin/logout
+    defaults: { _controller: FOSUserBundle:Security:logout }
+
+taseera_backend:
+    resource: "@TaseeraBackendBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+user_one_profile_edit:
+    path:  /company/profile/edit
+    defaults: { _controller: TaseeraUserBundle:Profile:edit }
+
+fos_user_company_change_password:
+    path:  /company/profile/change-password
+    defaults: { _controller: TaseeraUserBundle:ChangePassword:changePassword }
 
 
 user_one_registration:
-    path:  /register/user-one
+    path:  /register/company
     defaults: { _controller: TaseeraUserBundle:RegistrationUserOne:register }
 
 user_two_registration:
-    path:  /register/user-two
+    path:  /register/user
     defaults: { _controller: TaseeraUserBundle:RegistrationUserTwo:register }
 
 fos_user_registration_confirmed:
@@ -36,6 +94,18 @@ taseera_user:
     resource: "@TaseeraUserBundle/Resources/config/routing.yml"
     prefix:   /
 
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+fos_user_security_login:
+    path: /login
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+fos_user_security_check:
+    path: /check
+    defaults: { _controller: FOSUserBundle:Security:check }
+
+fos_user_security_logout:
+    path: /logout
+    defaults: { _controller: FOSUserBundle:Security:logout }
+
+#coresphere_console:
+ #   resource:
+  #  type: extra

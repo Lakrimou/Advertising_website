@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Item</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ item.id }}</td>
+            </tr>
+            <tr>
+                <th>Nameitem</th>
+                <td>{{ item.nameItem }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ item.description }}</td>
+            </tr>
+            <tr>
+                <th>Datepub</th>
+                <td>{% if item.datePub %}{{ item.datePub|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dateupdate</th>
+                <td>{% if item.dateUpdate %}{{ item.dateUpdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dateexpiration</th>
+                <td>{% if item.dateExpiration %}{{ item.dateExpiration|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Bspam</th>
+                <td>{% if item.bSpam %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Bactive</th>
+                <td>{% if item.bActive %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Benabled</th>
+                <td>{% if item.bEnabled %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sip</th>
+                <td>{{ item.sIp }}</td>
+            </tr>
+            <tr>
+                <th>Bshowemail</th>
+                <td>{% if item.bShowEmail %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Bpremium</th>
+                <td>{% if item.bPremium %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ item.price }}</td>
+            </tr>
+            <tr>
+                <th>Contactname</th>
+                <td>{{ item.contactName }}</td>
+            </tr>
+            <tr>
+                <th>Contactemail</th>
+                <td>{{ item.contactEmail }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('item_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('item_edit', { 'id': item.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

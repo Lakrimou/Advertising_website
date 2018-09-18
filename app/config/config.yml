@@ -6,11 +6,16 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: ar
+    category_directory: '%kernel.root_dir%/../web/backend/img/category'
+    category_directory_cover: '%kernel.root_dir%/../web/backend/img/category/covers'
+    user_one_company_directory: '%kernel.root_dir%/../web/backend/img/company'
+    user_two_directory: '%kernel.root_dir%/../web/backend/img/user'
+    medias_directory: '%kernel.root_dir%/../web/backend/img/medias'
 
 framework:
     #esi: ~
-    translator: ~
+    translator: { fallbacks: ["%locale%"] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -37,6 +42,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'bootstrap_3_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -81,7 +88,16 @@ fos_user:
     registration:
         confirmation:
             enabled: true
-
+    change_password:
+        form:
+            type:               Taseera\UserBundle\Form\ChangePasswordFormType # or 'fos_user_change_password' on Symfony < 2.8
+            name:               fos_user_company_change_password_form
+            validation_groups:  [ChangePassword, Default]
+    #profile:
+     #   form:
+      #      type:    Taseera\CompanyBundle\Form\ProfileFormType # or 'fos_user_profile' on Symfony < 2.8
+        #    name:    fos_user_company_profile
+        #    validation_groups:  [Profile, Default]
 
 pugx_multi_user:
     users:
@@ -97,7 +113,7 @@ pugx_multi_user:
             profile:
                   form:
                       type: Taseera\UserBundle\Form\ProfileUserOneFormType
-                      name: fos_user_profile_form
+                      name: fos_user_company_profile
                       validation_groups:  [Profile, Default]
         user_two:
             entity:
@@ -111,4 +127,67 @@ pugx_multi_user:
             profile:
                 form:
                     type: Taseera\UserBundle\Form\ProfileUserTwoFormType
+
+sensio_framework_extra:
+    request: { converters: true }
+
+fos_rest:
+    disable_csrf_role: IS_AUTHENTICATED_ANONYMOUSLY
+    body_listener: true
+    body_converter:
+        enabled: true
+    param_fetcher_listener: force
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+            xml: false
+            rss: false
+        mime_types:
+            json: ['application/json', 'application/x-json']
+            jpg: ['image/jpeg']
+            png: ['image/png']
+    routing_loader:
+        default_format:  json
+        include_format:  false
+    format_listener:
+        enabled: true
+        rules:
+            #- { path: ^/endpoint, priorities: [ json ], fallback_format: json, prefer_extension: true }
+            - { path: '^/endpoint', priorities: [ json ], fallback_format: json, prefer_extension: true }
+            - { path: '^/', priorities: [ 'text/html', '*/*'], fallback_format: html, prefer_extension: true }
+    exception:
+        enabled: true
+
+#JMS Serializer
+jms_serializer: ~
+
+
+# CSA Guzzle
+#csa_guzzle:
+#    profiler: "%kernel.debug%"
+
+
+# Lexik JWT Bundle
+lexik_jwt_authentication:
+    private_key_path: "%jwt_private_key_path%"
+    public_key_path:  "%jwt_public_key_path%"
+    pass_phrase:      "%jwt_key_pass_phrase%"
+    token_ttl:        "%jwt_token_ttl%"
+
+# Nelmio CORS
+nelmio_cors:
+    defaults:
+        allow_origin:  ["*"]
+        allow_methods: ["POST", "PUT", "GET", "DELETE", "OPTIONS"]
+        allow_headers: ["*"]
+        max_age:       3600
+    paths:
+        '^/': ~
+
+
+# Nelmio API Doc
+nelmio_api_doc: ~
+
+
 
